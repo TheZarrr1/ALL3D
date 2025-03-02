@@ -1,0 +1,2206 @@
+/* Estilos generales para que la página sea responsive */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-image: url('https://services.meteored.com/img/article/para-qual-lugar-o-universo-esta-se-expandindo-1685829316554_1280.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: white;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Asegura que se ajuste en pantallas pequeñas */
+}
+
+/* Ajuste del logo y menú para pantallas pequeñas */
+.logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+nav {
+    flex-grow: 1;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap; /* Asegura que el menú se ajuste en varias filas si es necesario */
+}
+
+nav ul li {
+    margin: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Ajustes de las secciones para pantallas pequeñas */
+section {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 10px;
+    border-radius: 5px;
+    max-width: 90%; /* Asegura que no se desborde en pantallas pequeñas */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centrado-texto {
+    text-align: center;
+}
+
+/* Ajustes de la galería de productos */
+.gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.gallery img {
+    max-width: 25%;
+    margin-bottom: 20px;
+}
+
+/* Ajuste para la sección de productos */
+.product-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    margin: 10px;
+    width: 180px;
+    max-width: 100%; /* Ajusta en pantallas más pequeñas */
+}
+
+/* Mantener el estilo de la imagen del producto */
+.product img {
+    width: 100%;
+    height: auto;
+    max-height: 150px; /* Altura máxima de la imagen */
+    object-fit: contain; /* Asegura que la imagen mantenga su proporción */
+    margin-bottom: 10px;
+}
+
+.centrado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input, form textarea, form input[type="file"], form button {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+form button {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 8px;
+    font-size: 14px;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding: 3px 15px; /* Reducimos el padding superior */
+    margin-top: 0; /* Eliminamos el margen superior */
+}
+
+.derechos-reservados {
+    margin-top: 10px; /* Ajustamos el espacio entre redes sociales y texto de derechos reservados */
+    font-size: 14px;
+    color: #ccc;
+}
+
+.svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+    filter: invert(100%) brightness(200%);
+}
+
+.svg-youtube, .svg-cults3d {
+    width: 24px;
+    height: 24px;
+}
+
+footer .social a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+@media (max-width: 1080px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        width: auto;
+        text-align: center;
+    }
+
+    .gallery img {
+        max-width: 45%;
+    }
+
+    .product-container {
+        flex-direction: row; /* Cambiar a row para mantener los productos en fila */
+        justify-content: center; /* Centrar en pantallas más pequeñas */
+    }
+
+    .product {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    form input, form textarea, form input[type="file"], form button {
+        width: 90%;
+    }
+}
+
+@media (min-width: 1081px) {
+    nav ul {
+        justify-content: flex-end;
+    }
+}
+
+/* Estilos para la página de detalles estilo Mercado Libre */
+#detalle-producto {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    gap: 40px;
+}
+
+.contenedor-imagenes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*------------------------------------*/
+
+/* Miniaturas con el mismo tamaño */
+.miniaturas img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.informacion-producto {
+    max-width: 400px; /* Ancho máximo para el contenedor de información del producto */
+    margin-top: 20px;
+}
+
+#detalles-producto {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+#producto-nombre {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#producto-precio {
+    font-size: 20px;
+    color: green;
+    margin-bottom: 20px;
+}
+
+#comprar-boton {
+    padding: 10px;
+    background-color: #3483fa;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    font-size: 16px;
+}
+
+/* Estilos mejorados para el selector de adjuntar archivos */
+.adjuntar-archivos-opcion {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.adjuntar-archivos-opcion label {
+    font-size: 16px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin: 0 auto; /* Asegura que el select esté centrado */
+    margin-top: 10px;
+    font-weight: normal; /* Eliminar negrita */
+    text-align: center;
+}
+
+.adjuntar-archivos-opcion select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin: 0 auto; /* Asegura que el select esté centrado */
+    margin-top: 10px;
+    width: 60px;
+    font-size: 14px;
+}
+
+/* Asegurar que el botón no se superponga */
+button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.file-upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .file-upload-section label {
+    margin-bottom: 10px;
+  }
+  
+  #file-upload-choice {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #aaa;
+    margin-bottom: 15px;
+    width: 150px;
+  }
+  
+  .file-uploads {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .file-uploads input[type="file"] {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .limit-warning {
+    color: red;
+    font-size: 14px;
+  }
+  /* Estilo de los botones "Sí" y "Eliminar archivo" */
+.elegante-opcion {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.opciones {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+.opcion {
+    display: inline-block;
+    background: linear-gradient(to right, #ff4b2b, #00c9ff); /* Degradado rojo a verde agua */
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Tamaño reducido del botón "Sí" */
+.opcion input[type="radio"] {
+    display: none; /* Esconde los radio buttons */
+}
+
+.opcion label {
+    display: block;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Estilo del botón "Eliminar archivo" */
+.eliminar-archivo {
+    background: linear-gradient(to right, #e74c3c, #16a085); /* Diferente degradado */
+    width: 150px;
+}
+
+/* Cambio de color cuando se selecciona "Sí" */
+.opcion input[type="radio"]:checked + label {
+    background: linear-gradient(to right, #00c9ff, #ff4b2b); /* Invertido al seleccionar */
+}
+
+/* Ajuste del contenedor de archivos */
+#archivos-contenedor input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#archivos-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#limite-archivos {
+    text-align: center;
+    margin-top: 10px;
+    color: red;
+}
+
+.boton-gradiente {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 1.5s ease; /* Transición de 1.5s para el hover */
+}
+
+.boton-gradiente:hover {
+    background: linear-gradient(to right, skyblue, violet);
+    background-size: 400% 400%;
+    animation: cambio-color 3s ease infinite; /* Animación suave al pasar el mouse */
+}
+
+@keyframes cambio-color {
+    0% {
+        background-position: 25% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 25% 50%;
+    }
+}
+
+/* Estilo para el botón gradiente y verde */
+.boton-gradiente, .boton-verde {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;  /* Reducido para acercar a "Choose file" */
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 1.5s ease;
+    width: 240px;
+}
+
+/* Hover con animación suave */
+.boton-gradiente:hover, .boton-verde:hover {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    background-size: 400% 400%;
+    animation: cambio-color 5s ease infinite;
+}
+
+/* Alinear el "o" en el centro y reducir espacios */
+.opciones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;  /* Ajusta este valor para acercar más a "Choose file" */
+}
+
+.opciones span {
+    margin: 0 10px;  /* Espaciado entre los botones y el "o" */
+}
+
+/* Responsive adjustments for mobile, tablets, and larger screens */
+@media (max-width: 1080px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .gallery img {
+        max-width: 80%;
+    }
+
+    footer .social {
+        flex-direction: column;
+    }
+
+    form input, form textarea, form button {
+        width: 90%;
+    }
+
+    .centrado {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Larger screens, over 1081px */
+@media (min-width: 1081px) {
+    nav ul {
+        justify-content: flex-end;
+    }
+
+    .product-container {
+        justify-content: flex-center;
+    }
+
+    .gallery img {
+        max-width: 30%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Asegura que los botones se vean uno encima del otro en móviles */
+    .opciones button {
+        margin-bottom: 10px; /* Espacio más pequeño entre los botones y el "o" */
+        width: 100%;
+    }
+
+    /* Reduce el espacio entre el "o" y los botones */
+    .opciones span {
+        display: block;
+        text-align: center;
+        margin: 4px 5; /* Reduce el espacio vertical del "o" */
+    }
+
+    /* Aumenta la distancia entre el botón de "Enviar Pedido" y el último botón */
+    .centrado button[type="submit"] {
+        margin-top: 30px; /* Aumenta la distancia del botón de enviar */
+    }
+}
+
+/* Personalización del botón de subir archivo */
+.custom-file-upload {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    display: inline-block;
+    margin-bottom: 10px;
+    border: none;
+    width: 200px;
+}
+
+.custom-file-upload:hover {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    background-size: 400% 400%;
+    animation: cambio-color 5s ease infinite;
+}
+
+.file-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #fff;
+}
+
+/* Estilo para el contenedor de archivos */
+.file-upload-wrapper {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Estilo adicional para el input de archivo oculto */
+.file-input {
+    display: none;
+}
+
+.file-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #fff;
+}
+
+/* Estilo para el contenedor de archivos */
+.file-upload-wrapper {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Estilo adicional para el input de archivo oculto */
+.file-input {
+    display: none;
+}
+
+/* Asegurar que los botones de agregar y eliminar archivos estén bien alineados */
+.opciones button {
+    width: 240px;
+    margin-bottom: 10px;
+}
+
+.opciones span {
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+/* Estilo para el botón de subir archivo */
+.file-upload-wrapper {
+    margin-bottom: 10px; /* Reducimos el espacio */
+}
+
+/* Estilo para los botones de agregar/eliminar archivo */
+.opciones {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5px; /* Reducimos el espacio */
+}
+
+.opciones span {
+    margin: 0 10px; /* Espacio entre "o" y los botones */
+}
+
+.boton-gradiente, .boton-verde {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border: none;
+    color: white;
+    padding: 10px 25px; 
+    text-align: center;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 1.5s ease;
+    width: 240px; /* Aseguramos que ambos botones tengan el mismo tamaño */
+    margin-bottom: 5px; /* Reducimos el espacio entre los botones */
+}
+
+/* Ajuste para dispositivos móviles: botones uno sobre el otro */
+/* Ajuste para dispositivos móviles */
+@media (max-width: 768px) {
+    .opciones {
+        flex-direction: column;
+    }
+
+    .opciones button {
+        width: 100%; /* Asegura que los botones ocupen todo el ancho en móviles */
+    }
+
+    .opciones span {
+        margin: 0px 0; /* Ajuste del espacio entre los botones */
+    }
+
+    /* Aumenta la distancia entre el botón de "Enviar Pedido" y los últimos botones */
+    .centrado button[type="submit"] {
+        margin-top: 20px;
+    }
+
+    footer .social {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer .social a {
+        margin-bottom: 10px; /* Aumenta el espacio entre los iconos en móviles */
+    }
+
+    .derechos-reservados {
+        margin-top: 10px;
+    }
+}
+
+/* Estilos del contenedor de opciones */
+.opciones-modificacion {
+    margin-top: 15px;
+}
+.opciones-modificacion label {
+    display: block;
+    margin-top: 10px;
+    font-weight: normal; /* Eliminar negrita */
+    color: white;
+}
+
+/* Estilo del select reducido */
+.styled-select {
+    width: 80px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Área de texto estilizada */
+.styled-textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    resize: none;
+}
+
+/* Hover y focus */
+.styled-select:focus, .styled-textarea:focus {
+    outline: none;
+    border: 1px solid #ff4b2b;
+}
+
+/* Estilo para el botón Comprar con Modificación */
+.boton-gradiente {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 1.5s ease;
+    width: 240px;
+}
+.boton-gradiente:hover {
+    background-size: 400% 400%;
+    animation: cambio-color 5s ease infinite;
+}
+
+@keyframes cambio-color {
+    0% {
+        background-position: 25% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 25% 50%;
+    }
+}
+
+/* Ajustes para el contenedor de archivos */
+#archivos-contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Contenedor de opciones de modificación */
+.opciones-modificacion {
+    margin-top: 15px;
+}
+
+.opciones-modificacion label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Estilo del select reducido */
+.styled-select {
+    width: 80px; /* Ancho reducido */
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Área de texto estilizada */
+.styled-textarea {
+    width: 100%;
+    max-width: 377px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+/* Hover y focus */
+.styled-select:focus, .styled-textarea:focus {
+    outline: none;
+    border: 1px solid #ff4b2b;
+}
+
+/* Estilo de los botones */
+.boton-gradiente {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+border: none;
+color: white;
+padding: 10px 25px;
+text-align: center;
+font-size: 16px;
+margin-top: 20px;  /* Reducido para acercar a "Choose file" */
+border-radius: 25px;
+cursor: pointer;
+transition: background 1.5s ease;
+width: 240px;
+}
+
+.boton-gradiente:hover {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+background-size: 400% 400%;
+animation: cambio-color 5s ease infinite;
+}
+/* Estilo ajustado de la caja de texto de modificación */
+#nota-modificacion {
+width: 100%; /* Mantiene el mismo ancho */
+max-width: 380px;
+height: 150px; /* Ajusta la altura para hacerlo más alto */
+padding: 10px;
+display: block;
+font-size: 16px;
+border-radius: 10px;
+resize: none; /* Elimina el ajuste manual de tamaño */
+}
+
+/* Estilo para el botón "Comprar con Modificación" */
+.boton-gradiente, .boton-comprar-modificacion {
+background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+width: 100%;
+font-size: 16px;
+}
+
+.boton-gradiente:hover, .boton-comprar-modificacion:hover {
+background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+background-size: 400% 400%;
+animation: cambio-color 5s ease infinite;
+}
+
+@keyframes cambio-color {
+    0% {
+        background-position: 25% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 25% 50%;
+    }
+}
+
+/* Estilos para botones de personalización */
+.boton-gradiente {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.5s ease;
+    width: 240px;
+    display: inline-block;
+}
+
+.boton-gradiente:hover {
+    background: linear-gradient(to right, rgb(15, 226, 226), rgb(165, 2, 165));
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Estilos para el botón */
+.boton-gradiente {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 1.5s ease;
+    width: 240px;
+    margin-top: 20px;
+}
+
+.boton-gradiente:hover {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    background-size: 400% 400%;
+    animation: cambio-color 5s ease infinite;
+}
+
+/* Botones de archivos */
+#pregunta-archivos .boton-gradiente {
+    width: 100%;
+    max-width: 400px;
+    text-align: center; 
+    min-height: 55px;
+    max-height: 220%;
+    margin: 10px 0; /* Espaciado uniforme */
+    font-size: 16px;
+}
+
+/* Botón Comprar con la Modificación */
+#comprar-con-modificacion {
+    width: 400px; /* Ajustado para alinear con ambos botones de archivos */
+    max-width: 400px; /* Límite máximo */
+    display: block; /* Asegura que esté centrado */
+    height: 45px; /* Consistente con los botones de archivo */
+}
+
+/* Botones para agregar/eliminar archivos */
+.opciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Espaciado entre los botones y el texto "o" */
+    margin-top: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Estilos para el diseño general en pantallas grandes */
+#detalle-producto {
+    display: flex;
+    justify-content: space-between; /* Asegura que las imágenes e información estén bien distribuidas */
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+.contenedor-imagenes {
+    flex: 1;
+    max-width: 65%; /* Imagen ocupa la mitad */
+}
+
+.informacion-producto {
+    flex: 1;
+    max-width: 35%; /* Información ocupa la mitad */
+}
+
+/* Miniaturas centradas */
+.miniaturas {
+    display: flex;
+    flex-wrap: wrap; /* Miniaturas en múltiples filas */
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Asegurar tamaño uniforme de miniaturas */
+.miniaturas img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+#limite-archivos {
+    font-size: 16px;
+    text-align: center;
+    width: 400px;
+}
+
+.opciones-modificacion label {
+    display: flex;
+    font-size: 18px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.opciones-modificacion textarea {
+    display: flex;
+    width: 50px;
+    font-size: 16px;
+    width: 100%; /* Ocupa casi todo el ancho */
+    max-width: 400px; /* Límite máximo */
+}
+
+/* Contenedor para centrar el botón horizontalmente */
+.contenedor-subir-archivo {
+    display: flex; /* Flexbox para garantizar centrado horizontal */
+    justify-content: center; /* Centra el botón horizontalmente */
+    align-items: center; /* Alinea verticalmente */
+    margin: 0 auto;
+    width: 100%; /* El contenedor ocupa todo el ancho disponible */
+    padding: 5px; /* Espaciado vertical opcional */
+}
+
+/* Estilo específico para el botón de subir archivo */
+.custom-file-upload {
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    color: white;
+    border-radius: 25px;
+    padding: 5px; /* Ajuste del relleno interno */
+    cursor: pointer;
+    font-size: 16px !important;
+    margin: 0 90px;
+    font-weight: normal !important; /* Elimina la negrita */
+    text-align: center;
+    width: 200px !important; /* Forza el ancho a 200px */
+    max-width: calc(100% - 180px); /* Máximo 90px de margen horizontal */
+    transition: background 0.3s ease;
+}
+
+/* Estilo para el mensaje de error debajo de la caja de texto */
+#error-modificacion {
+    color: red; /* Color del texto */
+    font-size: 16px; /* Tamaño del texto un poco más grande */
+    font-weight: bold; /* Negrita para destacar */
+    text-align: left; /* Alineado con el resto del contenido */
+    max-width: 400px; /* Mantiene el ancho alineado con los demás elementos */
+}
+
+#color-filamento {
+    font-size: 16px;
+    width: 200px;
+    align-items: center;
+}
+
+#desea-subir-archivo {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin-top: 10px;
+    width: 60px;
+    font-size: 14px;
+}
+
+#modificaciones {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin-top: 10px;
+    width: 60px;
+    font-size: 14px;
+}
+
+    /* Asegura compatibilidad con IDs generados dinámicamente */
+    [id^="subir-archivo-"] {
+        width: 200px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .opciones {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 5px;
+    }
+
+    /* Estilo específico para el botón de subir archivo */
+    .custom-file-upload {
+    display: flex;
+    justify-content: center; /* Centra el contenido del botón */
+    align-items: center; /* Alinea verticalmente */
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    color: white;
+    border-radius: 25px;
+    padding: 5px; /* Ajuste del relleno interno */
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal; /* Elimina la negrita */
+    text-align: center;
+    width: 200px; /* Tamaño constante del botón */
+    max-width: 200px; /* Máximo ancho para mantener consistencia */
+    transition: background 0.3s ease; /* Animación suave */
+}
+
+/* Botón de Volver: sobrepasa todos los elementos excepto el modal */
+.boton-volver {
+    position: fixed;
+    top: 20px; /* Ajustar según la ubicación deseada */
+    left: 20px; /* Ajustar según la ubicación deseada */
+    z-index: 999; /* Más alto que otros elementos, excepto el modal */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boton-volver:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.flecha-redonda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Tamaño reducido proporcionalmente */
+    height: 40px; /* Tamaño reducido proporcionalmente */
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border-radius: 50%;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.flecha-redonda::before {
+    content: ''; /* Elemento para la flecha personalizada */
+    display: block;
+    width: 12px; /* Grosor de la flecha reducido proporcionalmente */
+    height: 12px; /* Longitud de la flecha reducida proporcionalmente */
+    border-left: 3px solid white; /* Grosor reducido de la línea principal */
+    border-top: 3px solid white; /* Grosor reducido de la parte superior */
+    transform: rotate(-45deg) translateX(-1px); /* Ajuste proporcional de la rotación */
+    position: relative;
+    top: -1px; /* Ajuste fino de alineación vertical */
+    left: 2.5px; /* Ajuste fino de alineación horizontal */
+}
+
+.flecha-redonda:hover {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    background-size: 400% 400%;
+    animation: cambio-color 5s ease infinite;
+}
+
+
+/* Estilo para el mensaje de adjuntar archivos */
+#mensaje-adjuntar {
+    display: none; /* Oculto por defecto */
+    font-size: 16px; /* Tamaño de letra legible */
+    color: rgb(255, 255, 255); /* Color rojo para llamar la atención */
+    text-align: center; /* Centrado horizontalmente */
+    margin: 20px 0; /* Espaciado superior e inferior */
+    background-color: rgba(0, 0, 0, 0.455);
+    border: 1px solid rgb(255, 255, 255);
+    padding: 10px; /* Relleno interno */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 380px; /* Límite de ancho */
+}
+
+/*---------------- Diseño de las imagenes y videos y de hasta las miniaturas ---------------------*/
+
+/* Contenedor principal de las imágenes */
+.contenedor-imagenes {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Espacio entre la imagen principal y las miniaturas */
+}
+
+
+
+
+
+
+
+/* Contenedor de miniaturas */
+.miniaturas {
+    display: flex;
+    justify-content: center; /* Centra las miniaturas */
+    gap: 10px; /* Espaciado entre miniaturas */
+    margin-top: 10px; /* Espaciado superior */
+}
+
+/* Miniaturas individuales */
+.miniaturas video, 
+.miniaturas img {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer; /* Cambia el cursor a una manito */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, margin-left 0.3s ease, margin-right 0.3s ease;
+    transform: scale(1); /* Tamaño inicial */
+}
+
+.miniaturas video:hover, 
+.miniaturas img:hover {
+    transform: scale(1.5); /* Agrandar en el lugar */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Efecto visual */
+    margin-left: 10px; /* Moverse al costado al agrandarse */
+    margin-right: 10px;
+}
+
+.product-container img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: scale(1); /* Tamaño inicial */
+    cursor: pointer;
+}
+
+.product-container img:hover {
+    transform: scale(1.1); /* Agrandar al pasar el cursor */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Efecto de sombra */
+}
+
+/* Estilo de los selects */
+#color-filamento-container select {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+/* Estilo del botón "Agregar otro color" */
+#agregar-color {
+    display: block;
+    margin: 10px 0;
+    padding: 10px 20px;
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#agregar-color:hover {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    background-size: 400% 400%;
+    animation: cambio-color 5s ease infinite;
+}
+
+/* Transición suave para el botón */
+#comprar-boton {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo cuando el botón está oculto */
+#comprar-boton.oculto {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none; /* Desactivar interacción mientras está oculto */
+}
+
+/* Ajustar el espacio alrededor para transición fluida */
+.opciones-modificacion {
+    transition: all 0.5s ease;
+}
+
+/* Fondo negro ajustable con transición */
+.opciones-modificacion {
+    transition: all 0.5s ease;
+    overflow: hidden; /* Evita desbordamiento durante la animación */
+}
+
+/* Transición para elementos que aparecen dinámicamente */
+#nota-modificacion, 
+#adjuntar-archivos, 
+#comprar-con-modificacion {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    display: none; /* Ocultos por defecto */
+}
+
+#nota-modificacion.mostrar, 
+#adjuntar-archivos.mostrar, 
+#comprar-con-modificacion.mostrar {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/*----------------------Diseño de los selects dinamicos luego de poner mas cantidad para comprar------------------------*/
+
+/* Estilo para los selects */
+.color-select {
+    display: flex;
+    width: 100%;
+    max-width: 200px; /* Ajustar según diseño */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Efecto hover para los selects */
+.color-select:hover {
+    border-color: #888;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Enfocar select */
+.color-select:focus {
+    border-color: #555;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo general para los selects */
+.color-select {
+    width: 100%;
+    max-width: 200px; /* Ajusta según el tamaño que desees */
+    padding: 8px;
+    margin: 5px 0; /* Espaciado entre los selects */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Estilo general para los selects */
+.color-select {
+    width: 100%;
+    max-width: 200px; /* Ajusta según el tamaño que desees */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 0; /* Elimina el margen adicional */
+}
+
+/* Contenedor de cada grupo de selectores */
+.colores-grupo {
+    display: flex;
+    flex-direction: column; /* Asegura que el texto esté encima de los selects */
+    align-items: flex-start; /* Alinea a la izquierda */
+    gap: 0; /* Sin espacio entre selects */
+    margin-bottom: 10px; /* Separación entre grupos */
+}
+
+/* Texto del título de cada grupo (como "Color del producto 2") */
+.colores-grupo p,
+.colores-grupo label {
+    font-weight: bold;
+    margin: 0 0 10px 0; /* Solo separa el texto del grupo */
+    font-size: 14px;
+    text-align: left;
+}
+
+#pregunta-archivos .boton-gradiente {
+    width: 200px; /* Botones más anchos */
+    font-size: 16px;
+}
+
+#colores-producto {
+    margin-top: 20px;
+  }
+  
+  .colores-grupo {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  #configuracion-producto {
+    margin-top: 20px;
+  }
+  
+#cantidad-producto {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin-top: 5px;
+    width: 60px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/*--------------------------------IMAGEN/VIDEO PRINCIPAL EN GRANDE------------------------------*/
+
+/* Contenedor de la imagen principal */
+.imagen-principal {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    overflow: visible;
+    margin: 3% auto -10px;
+}
+
+/* Imagen y Video principal con tamaño predeterminado */
+.imagen-principal img,
+.imagen-principal video {
+    width: 100%;
+    height: auto;
+    max-width: 1000px; /* Tamaño máximo para que no se sobresalga */
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, margin-bottom 0.3s ease-in-out;
+}
+
+/* Agrandar imagen/video y mover miniaturas hacia abajo */
+.imagen-principal:hover img,
+.imagen-principal:hover video {
+    transform: scale(1.1);
+    transform-origin: center center;
+    margin-bottom: 30px;
+}
+
+/* Contenedor de miniaturas */
+.miniaturas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    transition: margin-top 0.3s ease-in-out;
+}
+
+/* Cuando la imagen o el video crece, las miniaturas bajan */
+.imagen-principal:hover + .miniaturas {
+    margin-top: 10px;
+}
+
+/* Ajuste específico para que el video no sobresalga */
+.imagen-principal video {
+    display: block;
+    max-height: 665px; /* Limita la altura como una imagen */
+    border-radius: 5px; /* Bordes redondeados como las imágenes */
+}
+
+/*--------------------------------------------------------------------------------------------*/
+
+/* Ajustes específicos para pantallas pequeñas (CELULARES) */
+@media (max-width: 768px) {
+    #detalle-producto {
+        display: flex;
+        flex-direction: column; /* Diseño vertical */
+        align-items: center; /* Centra todos los elementos */
+        padding: 20px;
+        gap: 10px; /* Espacio entre las secciones */
+    }
+
+    .contenedor-imagenes {
+        display: flex;
+        flex-direction: column; /* Imágenes una debajo de la otra */
+        align-items: center; /* Centra las imágenes */
+        width: 100%;
+        gap: 10px; /* Espacio entre imagen principal y miniaturas */
+    }
+
+    .imagen-principal img {
+        max-width: 80%; /* Imagen ocupa casi todo el ancho */
+        height: auto;
+    }
+
+    .miniaturas {
+        display: flex;
+        flex-wrap: wrap; /* Miniaturas en múltiples filas */
+        justify-content: center; /* Centra las miniaturas */
+        gap: 10px; /* Espacio entre miniaturas */
+    }
+
+    .miniaturas video,
+    .miniaturas img {
+        width: 70px; /* Ajuste de tamaño */
+        height: 70px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .informacion-producto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%; /* Ajusta el ancho relativo */
+        max-width: 400px; /* Limita el ancho máximo */
+        margin: 0 auto;
+        gap: 10px;
+    }
+
+    #producto-nombre {
+        font-size: 40px; /* Texto más grande */
+        text-align: center;
+        margin-top: 10px;
+        width: 410px;
+    }
+
+    #producto-precio {
+        font-size: 30px;
+        color: green;
+        text-align: center;
+        margin-top: -10px;
+        width: 400px;
+    }
+
+    .opciones-modificacion {
+        display: flex;
+        flex-direction: column; /* Opciones una debajo de la otra */
+        align-items: center; /* Centra opciones */
+        gap: 10px; /* Espacio entre las opciones */
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .opciones-modificacion label {
+        font-size: 18px;
+        text-align: center;
+        width: 400px;
+    }
+
+    .opciones-modificacion textarea {
+        display: flex;
+        width: 50px;
+        font-size: 16px;
+        width: 100%; /* Ocupa casi todo el ancho */
+        max-width: 400px; /* Límite máximo */
+    }
+
+    .opciones-modificacion select {
+        font-size: 16px;
+        width: 200px;
+        align-items: center;
+    }
+
+    textarea.styled-textarea {
+        font-size: 18px;
+        height: 160px; /* Altura ajustada */
+        max-width: 380px; /* Límite máximo */
+        min-width: 380px; /* Ancho mínimo */
+    }
+
+    #pregunta-archivos {
+        display: flex;
+        flex-direction: column; /* Opciones una debajo de la otra */
+        justify-content: center; /* Centra los botones */
+        align-items: center; /* Centra verticalmente */
+        gap: 0px; /* Espacio entre los botones y el "o" */
+        margin-top: 20px;
+    }
+
+    #pregunta-archivos {
+        font-size: 14px;
+        max-width: 150px; /* Menor ancho para pantallas pequeñas */
+        text-align: center;
+    }
+
+    #desea-subir-archivo {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        margin: 0 auto; /* Asegura que el select esté centrado */
+        margin-top: 10px;
+        width: 60px;
+    }
+
+    #modificaciones {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        margin: 0 auto; /* Asegura que el select esté centrado */
+        margin-top: 10px;
+        width: 60px;
+    }
+
+    #pregunta-archivos .boton-gradiente {
+        width: 250px; /* Botones más anchos */
+        font-size: 16px;
+    }
+
+    #comprar-con-modificacion {
+        max-width: 400px; /* Límite máximo */
+        font-size: 18px;
+        padding: 12px;
+        display: block;
+        width: 400px;
+    }
+
+    #limite-archivos {
+        font-size: 16px;
+        text-align: center;
+        width: 400px;
+    }
+
+    #comprar-boton {
+        max-width: 400px; /* Límite máximo */
+        font-size: 18px;
+        padding: 12px;
+        display: block;
+        width: 400px;
+        margin-top: -10px;
+    }
+
+    .custom-file-upload {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 1.5s ease;
+    width: 150px;
+    margin-top: 20px;
+    }
+    
+    .custom-file-upload:hover {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    background-size: 400% 400%;
+    animation: cambio-color 5s ease infinite;
+    }
+
+    /* Estilo específico para el botón de subir archivo */
+    .custom-file-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    color: white;
+    border-radius: 25px;
+    padding: 5px; /* Ajusta el relleno */
+    cursor: pointer;
+    margin: 10px auto; /* Centra el botón horizontalmente */
+    font-size: 16px !important;
+    font-weight: normal !important; /* Elimina negrita */
+    text-align: center;
+    width: 200px !important; /* Ajusta el tamaño del botón */
+    transition: background 0.3s ease;
+    }
+
+    /* Asegura compatibilidad con IDs generados dinámicamente */
+    [id^="subir-archivo-"] {
+        width: 200px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .opciones {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 5px;
+    }
+
+    /* Estilo específico para el botón de subir archivo */
+    .custom-file-upload {
+        display: flex;
+        justify-content: center; /* Centra el contenido del botón */
+        align-items: center; /* Alinea verticalmente */
+        background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+        color: white;
+        border-radius: 25px;
+        padding: 5px; /* Ajuste del relleno interno */
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: normal; /* Elimina la negrita */
+        text-align: center;
+        width: 200px; /* Tamaño constante del botón */
+        max-width: 200px; /* Máximo ancho para mantener consistencia */
+        transition: background 0.3s ease; /* Animación suave */
+    }
+
+    /* Estilo para el mensaje de error debajo de la caja de texto */
+    #error-modificacion {
+    color: red; /* Color del texto */
+    font-size: 16px; /* Tamaño del texto un poco más grande */
+    font-weight: bold; /* Negrita para destacar */
+    text-align: center; /* Alineado con el resto del contenido */
+    width: 400px; /* Mantiene el ancho alineado con los demás elementos */
+    }
+
+    #mensaje-adjuntar {
+        display: none; /* Oculto por defecto */
+        font-size: 16px; /* Tamaño de letra legible */
+        color: rgb(255, 255, 255); /* Color rojo para llamar la atención */
+        text-align: center; /* Centrado horizontalmente */
+        margin: 20px 0; /* Espaciado superior e inferior */
+        background-color: rgba(0, 0, 0, 0.455);
+        border: 1px solid rgb(255, 255, 255);
+        padding: 10px; /* Relleno interno */
+        border-radius: 10px; /* Bordes redondeados */
+        width: 378px; /* Límite de ancho */
+    }
+
+    .modal-content {
+        max-width: 80%; /* Reducir más el tamaño en pantallas pequeñas */
+        max-height: 80%; /* Ajustar altura también */
+    }
+
+    #cantidad-producto {
+        display: flex;
+        margin: 0 auto;
+        margin-top: 5px;
+        width: 60px;
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    #configuracion-producto label,
+    #colores-producto label {
+        text-align: center;
+        display: block;
+    }
+
+    .colores-grupo {
+        flex-direction: column; /* Coloca el texto y los selects uno encima del otro */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .color-select {
+        margin: 0; /* Mantiene los selects juntos */
+        margin-top: 0px; /* Agrega un pequeño espacio entre el primer select del grupo */
+        width: 100%;
+        max-width: 180px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        background-color: #fff;
+    }
+
+    .colores-grupo p,
+    .colores-grupo label {
+        text-align: center;
+        margin: 0 0 5px 0; /* Espaciado solo debajo del texto */
+    }
+
+    .opciones-modificacion label{
+        text-align: center;
+        display: block;
+    }
+
+    #color-filamento-container {
+        margin-top: -15px;
+    }
+
+    #modificaciones {
+        margin-top: -5px;
+    }
+}
+
+/* Ajustes específicos para pantallas entre chiquitas y grandes */
+@media (min-width: 769px) and (max-width: 1257px) {
+    /* Estilos para pantallas entre chiquitas y grandes */
+    #detalle-producto {
+        display: flex;
+        flex-direction: column; /* Diseño vertical */
+        align-items: center; /* Centra todos los elementos */
+        padding: 20px;
+        gap: 10px; /* Espacio entre las secciones */
+    }
+
+    .contenedor-imagenes {
+        display: flex;
+        flex-direction: column; /* Imágenes una debajo de la otra */
+        align-items: center; /* Centra las imágenes */
+        width: 100%;
+        gap: 10px; /* Espacio entre imagen principal y miniaturas */
+    }
+
+    .imagen-principal img {
+        max-width: 80%; /* Imagen ocupa casi todo el ancho */
+        height: auto;
+    }
+
+    .miniaturas {
+        display: flex;
+        flex-wrap: wrap; /* Miniaturas en múltiples filas */
+        justify-content: center; /* Centra las miniaturas */
+        gap: 10px; /* Espacio entre miniaturas */
+    }
+
+    .miniaturas video,
+    .miniaturas img {
+        width: 70px; /* Ajuste de tamaño */
+        height: 70px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .informacion-producto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%; /* Ajusta el ancho relativo */
+        max-width: 400px; /* Limita el ancho máximo */
+        margin: 0 auto;
+        gap: 10px;
+    }
+
+    #producto-nombre {
+        font-size: 40px; /* Texto más grande */
+        text-align: center;
+        margin-top: 10px;
+        width: 410px;
+    }
+
+    #producto-precio {
+        font-size: 30px;
+        color: green;
+        text-align: center;
+        margin-top: -10px;
+        width: 400px;
+    }
+
+    .opciones-modificacion {
+        display: flex;
+        flex-direction: column; /* Opciones una debajo de la otra */
+        align-items: center; /* Centra opciones */
+        gap: 10px; /* Espacio entre las opciones */
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .opciones-modificacion label {
+        font-size: 18px;
+        text-align: center;
+        width: 400px;
+    }
+
+    .opciones-modificacion textarea {
+        display: flex;
+        width: 50px;
+        font-size: 16px;
+        width: 100%; /* Ocupa casi todo el ancho */
+        max-width: 380px; /* Límite máximo */
+    }
+
+    .opciones-modificacion select {
+        font-size: 16px;
+        width: 200px;
+        align-items: center;
+    }
+
+    textarea.styled-textarea {
+        font-size: 18px;
+        height: 160px; /* Altura ajustada */
+        max-width: 380px; /* Límite máximo */
+        min-width: 380px; /* Ancho mínimo */
+    }
+
+    #pregunta-archivos {
+        display: flex;
+        flex-direction: column; /* Opciones una debajo de la otra */
+        justify-content: center; /* Centra los botones */
+        align-items: center; /* Centra verticalmente */
+        gap: 0px; /* Espacio entre los botones y el "o" */
+        margin-top: 20px;
+    }
+
+    #pregunta-archivos {
+        font-size: 14px;
+        max-width: 150px; /* Menor ancho para pantallas pequeñas */
+        text-align: center;
+    }
+
+    #desea-subir-archivo {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        margin: 0 auto; /* Asegura que el select esté centrado */
+        margin-top: 10px;
+        width: 60px;
+    }
+
+    #modificaciones {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        margin: 0 auto; /* Asegura que el select esté centrado */
+        margin-top: 10px;
+        width: 60px;
+    }
+
+    #pregunta-archivos .boton-gradiente {
+        width: 250px; /* Botones más anchos */
+        font-size: 16px;
+    }
+
+    #comprar-con-modificacion {
+        max-width: 400px; /* Límite máximo */
+        font-size: 18px;
+        padding: 12px;
+        display: block;
+        width: 400px;
+    }
+
+    #limite-archivos {
+        font-size: 16px;
+        text-align: center;
+        width: 400px;
+    }
+
+    #comprar-boton {
+        max-width: 400px; /* Límite máximo */
+        font-size: 18px;
+        padding: 12px;
+        display: block;
+        width: 400px;
+        margin-top: -10px;
+    }
+
+    .custom-file-upload {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 1.5s ease;
+    width: 150px;
+    margin-top: 20px;
+    }
+    
+    .custom-file-upload:hover {
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    background-size: 400% 400%;
+    animation: cambio-color 5s ease infinite;
+    }
+
+    /* Estilo específico para el botón de subir archivo */
+    .custom-file-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    color: white;
+    border-radius: 25px;
+    padding: 5px; /* Ajusta el relleno */
+    cursor: pointer;
+    margin: 10px auto; /* Centra el botón horizontalmente */
+    font-size: 16px !important;
+    font-weight: normal !important; /* Elimina negrita */
+    text-align: center;
+    width: 200px !important; /* Ajusta el tamaño del botón */
+    transition: background 0.3s ease;
+    }
+
+    /* Estilo para el mensaje de error debajo de la caja de texto */
+    #error-modificacion {
+    color: red; /* Color del texto */
+    font-size: 16px; /* Tamaño del texto un poco más grande */
+    font-weight: bold; /* Negrita para destacar */
+    text-align: center; /* Alineado con el resto del contenido */
+    width: 400px; /* Mantiene el ancho alineado con los demás elementos */
+    }
+
+    #mensaje-adjuntar {
+        display: none; /* Oculto por defecto */
+        font-size: 16px; /* Tamaño de letra legible */
+        color: rgb(255, 255, 255); /* Color rojo para llamar la atención */
+        text-align: center; /* Centrado horizontalmente */
+        margin: 20px 0; /* Espaciado superior e inferior */
+        background-color: rgba(0, 0, 0, 0.455);
+        border: 1px solid rgb(255, 255, 255);
+        padding: 10px; /* Relleno interno */
+        border-radius: 10px; /* Bordes redondeados */
+        width: 378px; /* Límite de ancho */
+    }
+
+    .modal-content {
+        max-width: 80%; /* Reducir más el tamaño en pantallas pequeñas */
+        max-height: 80%; /* Ajustar altura también */
+    }
+
+    #cantidad-producto {
+        display: flex;
+        margin: 0 auto;
+        margin-top: 5px;
+        width: 60px;
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    #configuracion-producto label,
+    #colores-producto label {
+        text-align: center;
+        display: block;
+    }
+
+    .colores-grupo {
+        flex-direction: column; /* Coloca el texto y los selects uno encima del otro */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .color-select {
+        margin: 0; /* Mantiene los selects juntos */
+        margin-top: 0px; /* Agrega un pequeño espacio entre el primer select del grupo */
+        width: 100%;
+        max-width: 180px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        background-color: #fff;
+    }
+
+    .colores-grupo p,
+    .colores-grupo label {
+        text-align: center;
+        margin: 0 0 5px 0; /* Espaciado solo debajo del texto */
+    }
+
+    .opciones-modificacion label {
+        text-align: center;
+        display: block;
+    }
+    
+    #color-filamento-container {
+        margin-top: -15px;
+    }
+
+    #modificaciones {
+        margin-top: -5px;
+    }
+}
+
+/*----------------------- MODAL --------------------------*/
+.modal {
+    display: none; /* 🔹 Modal oculto hasta que se haga clic */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+/* 📸 Imagen y 🎥 Video dentro del modal */
+.modal-content-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    max-height: 800px;
+    transform: translateX(0%); /* 🔹 Centrado correctamente */
+}
+
+.modal-content {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+/* 🎥 Configuración para videos */
+.modal-content-container video {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* 🔍 Zoom dentro del modal */
+.modal-content.zoom {
+    transform: scale(1.5);
+    cursor: zoom-out;
+}
+
+/* ❌ Botón de Cerrar (X) */
+.cerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Efecto al pasar el cursor en la (X) */
+.cerrar:hover {
+    color: #ccc;
+}
+
+/* ⬅➡ Botones de navegación (Anterior/Siguiente) */
+.navegacion {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 60px;
+    color: white;
+    transition: color 0.3s ease;
+    padding: 10px;
+}
+
+/* Flecha izquierda */
+.anterior {
+    left: 10px;
+}
+
+/* Flecha derecha */
+.siguiente {
+    right: 10px;
+}
+
+/* Efecto al pasar el cursor */
+.navegacion:hover {
+    color: #ccc;
+}
+
+/* 📌 📏 Ajustes para pantallas MEDIANAS (769px - 1257px) */
+@media (min-width: 769px) and (max-width: 1257px) {
+    .modal-content-container {
+        width: 600px; /* Un poco más chico */
+        max-height: 700px;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .cerrar {
+        font-size: 45px; /* Un poco más chico */
+    }
+
+    .navegacion {
+        font-size: 50px; /* Ajustar tamaño de las flechas */
+    }
+}
+
+/* 📌 📏 Ajustes para pantallas PEQUEÑAS (hasta 768px) */
+@media (max-width: 768px) {
+    
+    .modal-content-container {
+        width: 80%;
+        max-height: 70%;
+    }
+
+    .modal-content {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .cerrar {
+        font-size: 40px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .navegacion {
+        font-size: 40px; /* Flechas más chicas */
+        padding: 5px;
+    }
+
+    .anterior {
+        left: 5px;
+    }
+
+    .siguiente {
+        right: 5px;
+    }
+}
+
+/* Ocultar el botón de volver cuando el modal está activo */
+.modal {
+    display: none; /* Asegura que el modal está oculto por defecto */
+}
+
+.modal.active {
+    display: flex; /* Cuando el modal se activa, se muestra */
+}
+
+/* Ocultar el botón de volver cuando el modal está abierto */
+.modal.active ~ .boton-volver {
+    display: none;
+}

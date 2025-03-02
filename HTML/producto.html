@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto</title>
+    <link rel="stylesheet" href="../CSS/STYLES.CSS">
+    <link rel="icon" href="../images/Logo definitivo PNG.png">
+    <script defer src="../JS/producto.js"></script>
+</head>
+
+<body>
+    <!-- Botón para volver al index -->
+    <div class="boton-volver">
+        <a href="../index.html" class="flecha-redonda"></a>
+    </div>
+
+    <section id="detalle-producto">
+        <div class="contenedor-imagenes">
+            <div class="imagen-principal">
+                <video id="video-principal" autoplay muted loop style="display: none;"></video>
+                <img id="imagen-principal" src="" alt="Imagen principal del producto" style="display: block;">
+            </div>
+            <div class="miniaturas">
+                <!-- Aquí se cargarán las miniaturas de las imágenes y videos -->
+            </div>
+        </div>
+
+        <div class="informacion-producto">
+            <h1 id="producto-nombre">Nombre del Producto</h1>
+            <p id="producto-precio">Precio del Producto</p>
+
+            <!-- Botón de compra principal -->
+            <button id="comprar-boton" class="boton-gradiente">Comprar Ahora</button>
+
+            <!-- Opciones de personalización -->
+            <div class="opciones-modificacion">
+                <label for="color-filamento">Seleccione los colores del filamento:</label>
+
+                <!-- Contenedor para los selects de colores -->
+                <div id="color-filamento-container"></div>
+                <button id="agregar-color" style="display: none;">Agregar otro color</button>
+                <p id="limite-colores" style="color: red; display: none;">Has alcanzado el límite de colores.</p>
+
+                <div id="configuracion-producto">
+                    <label for="cantidad-producto">Cantidad:</label>
+                    <select id="cantidad-producto">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                  
+                  <div id="colores-producto">
+                    <!-- Aquí se agregarán los selects dinámicamente -->
+                  </div>      
+
+                <!-- Pregunta para agregar más colores -->
+                <div id="pregunta-agregar-mas" style="display: none; margin-top: 15px;">
+                    <label for="agregar-mas-select">¿Quieres agregar más colores?</label>
+                </div>
+                
+                
+                <!-- Botón para agregar más colores -->
+                <button id="agregar-color" class="boton-gradiente" style="display: none;">Agregar otro color</button>
+
+                <!-- Mensaje de límite de colores -->
+                <p id="limite-colores" style="color: red; display: none;">Has alcanzado el límite de colores.</p>
+
+                <div id="modificacion-producto">
+                    <label for="modificaciones">¿Deseas alguna modificación en el producto?</label>
+                    <select id="modificaciones" name="modificaciones" class="styled-select">
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>                
+
+                <!-- Área de texto para modificaciones -->
+                <textarea id="nota-modificacion" name="nota-modificacion" placeholder="Describe aquí tu modificación deseada..." class="styled-textarea" style="display: none;"></textarea>
+                
+                <!-- Adjuntar archivos para personalización -->
+                <div id="adjuntar-archivos" style="display: none;">
+                    <label for="desea-subir-archivo">¿Deseas adjuntar algún archivo para entender mejor la idea?</label>
+                    <select id="desea-subir-archivo" name="desea-subir-archivo" class="styled-select">
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>
+                <p id="mensaje-adjuntar" style="display: none; margin-top: 10px;"></p>
+
+                <div id="archivos-contenedor" style="display: none; margin-top: 15px;"></div>
+                <div id="pregunta-archivos" class="opciones" style="display: none;">
+                    <button type="button" class="boton-gradiente" id="agregar-otro-archivo">Agregar archivo</button>
+                    <span>o</span>
+                    <button type="button" class="boton-gradiente" id="eliminar-ultimo-archivo">Eliminar el último archivo</button>
+                </div>
+                <p id="limite-archivos" style="color: red; display: none;">Has alcanzado el límite de 5 archivos.</p>
+
+                <!-- Botón de compra con modificación, ubicado al final -->
+                <button id="comprar-con-modificacion" class="boton-gradiente" style="display: none;">Comprar con la Modificación</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para imagen con zoom y navegación -->
+    <div id="modal-imagen" class="modal">
+        <span id="cerrar-modal" class="cerrar">&times;</span>
+        <button id="anterior-imagen" class="navegacion anterior">&lt;</button>
+        <div class="modal-content-container">
+            <img id="modal-img" src="" alt="Media" class="modal-content" />
+        </div>
+        <button id="siguiente-imagen" class="navegacion siguiente">&gt;</button>
+    </div>
+    
+    <script defer src="../JS/producto.js"></script>
+</body>
+</html>

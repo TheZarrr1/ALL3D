@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL 3D</title>
+    <link rel="stylesheet" href="CSS/STYLES.CSS">
+    <link rel="icon" href="images/Logo definitivo PNG.png">
+</head>
+<body>
+    <script src="JS/script.js"></script>
+    <header>
+        <div class="logo">
+            <h1>ALL 3D</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#acerca-de-mi">Acerca de mí</a></li>
+                <li><a href="#tienda">Tienda</a></li>
+                <li><a href="#personalizado">Diseño Personalizado</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <h2>Bienvenidos a ALL 3D</h2>
+            <p>Hola, armé esta página para poder agilizar las compras en 3D. Aquí podrás explorar todas las cosas que hago y que puedo hacer. ¡Descubre modelos únicos y diseños personalizados que pueden ajustarse a tus necesidades! Gracias por visitarnos, y espero que encuentres algo que te guste.</p>
+        </section>
+
+        <section id="acerca-de-mi">
+            <h2>Acerca de mí</h2>
+            <p>Soy un joven de 23 años que estudia ingeniería mecánica y trabaja en una ferretería. Me dedico a realizar cursos para mejorar constantemente y, aunque mi impresión 3D aún no es tan profesional, estoy comprometido a mejorar mis habilidades y la calidad de mis productos con el tiempo. Además, soy streamer y prendo en Twitch y Kick cada cierto tiempo o cuando tengo tiempo libre. También soy diseñador 3D y utilizo herramientas como SolidWorks y Fusion 360.</p>
+        </section>
+
+        <section id="tienda">
+            <h2 class="subtitulo">Tienda</h2>
+            <div class="product-container">
+                <!-- Los productos se cargarán dinámicamente aquí -->
+            </div>
+        </section>
+
+        <!-- Sección de Diseño Personalizado -->
+        <section id="personalizado">
+            <h2>Diseño Personalizado</h2>
+            <p class="centrado-texto">¿Tienes una idea para un diseño personalizado? Déjame saber lo que necesitas y trabajaré contigo para hacerlo realidad.</p>
+
+            <!-- Formulario -->
+            <form id="form-personalizado" action="https://getform.io/f/bollgmwa" method="POST" enctype="multipart/form-data" class="centrado">
+                <input type="text" name="nombre" placeholder="Tu Nombre" required>
+                <textarea name="detalles" placeholder="Describe tu idea aquí" required></textarea>
+
+                <!-- Pregunta si desea agregar archivos -->
+                <div class="adjuntar-archivos-opcion">
+                    <label for="quiere-archivos">¿Deseas adjuntar algún archivo para ayudar a lo que describes?</label>
+                    <select id="quiere-archivos" name="quiere-archivos">
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>
+
+                <!-- Contenedor de archivos con estilo personalizado -->
+                <div id="archivos-contenedor" style="display: none; margin-top: 15px;">
+                    <!-- Aquí se agregarán los archivos -->
+                </div>
+
+                <!-- Opciones para agregar o eliminar archivos -->
+                <div id="pregunta-archivos" style="margin-top: 7px; display: none;">
+                    <div class="opciones">
+                        <button type="button" class="boton-gradiente" id="agregar-otro-archivo">Agregar otro archivo</button>
+                        <span>o</span>
+                        <button type="button" class="boton-gradiente" id="eliminar-ultimo-archivo">Eliminar el último archivo</button>
+                    </div>
+                </div>
+
+                <!-- Límite de archivos -->
+                <p id="limite-archivos" style="color: red; display: none;">Has alcanzado el límite de 10 archivos.</p>
+
+                <!-- Botón de enviar -->
+                <button type="submit" class="boton-gradiente">Enviar Pedido</button>
+            </form>
+        </section>
+
+        <!-- Script actualizado para el formulario -->
+        <script>
+            let contadorArchivos = 0;  // Inicializa sin archivos agregados
+const maxArchivos = 10;    // Máximo de archivos permitidos
+const archivosContenedor = document.getElementById('archivos-contenedor');
+const preguntaArchivos = document.getElementById('pregunta-archivos');
+const limiteArchivos = document.getElementById('limite-archivos');
+
+// Mostrar el campo de archivos si el usuario elige "Sí"
+document.getElementById('quiere-archivos').addEventListener('change', function () {
+    if (this.value === 'si') {
+        if (contadorArchivos === 0) {
+            agregarCampoArchivo();  // Agregar solo un campo de archivo la primera vez
+        }
+        preguntaArchivos.style.display = 'block';  // Mostrar las opciones de agregar/eliminar archivo
+    } else {
+        archivosContenedor.style.display = 'none';
+        preguntaArchivos.style.display = 'none';
+        archivosContenedor.innerHTML = '';  // Limpiar los campos si elige "No"
+        limiteArchivos.style.display = 'none';  // Ocultar el mensaje de límite
+        contadorArchivos = 0;  // Reiniciar el contador
+    }
+});
+
+// Función para agregar un nuevo campo de archivo
+function agregarCampoArchivo() {
+    if (contadorArchivos < maxArchivos) {
+        archivosContenedor.style.display = 'block';
+
+        // Crear un nuevo campo de subida de archivo personalizado
+        const nuevoWrapper = document.createElement('div');
+        nuevoWrapper.classList.add('file-upload-wrapper');
+
+        const nuevoInput = document.createElement('input');
+        nuevoInput.type = 'file';
+        nuevoInput.name = 'archivos[]';
+        nuevoInput.accept = '*';
+        nuevoInput.id = 'file-upload-' + contadorArchivos;
+        nuevoInput.classList.add('file-input');
+        nuevoInput.style.display = 'none';
+
+        const nuevoLabel = document.createElement('label');
+        nuevoLabel.htmlFor = 'file-upload-' + contadorArchivos;
+        nuevoLabel.classList.add('custom-file-upload');
+        nuevoLabel.textContent = 'Subir Archivo';
+
+        const nuevoSpan = document.createElement('span');
+        nuevoSpan.id = 'file-name-' + contadorArchivos;
+        nuevoSpan.classList.add('file-name');
+        nuevoSpan.textContent = 'No se ha seleccionado ningún archivo';
+
+        // Añadir los eventos
+        nuevoInput.addEventListener('change', function() {
+            const fileName = nuevoInput.files[0] ? nuevoInput.files[0].name : "No se ha seleccionado ningún archivo";
+            nuevoSpan.textContent = fileName;
+        });
+
+        // Añadir todo al contenedor
+        nuevoWrapper.appendChild(nuevoInput);
+        nuevoWrapper.appendChild(nuevoLabel);
+        nuevoWrapper.appendChild(nuevoSpan);
+        archivosContenedor.appendChild(nuevoWrapper);
+
+        contadorArchivos++;
+
+        // Mostrar mensaje de límite al alcanzar el máximo, pero no ocultar el botón de eliminar
+        if (contadorArchivos >= maxArchivos) {
+            limiteArchivos.style.display = 'block';
+        }
+    }
+}
+
+// Función para eliminar el último archivo
+document.getElementById('eliminar-ultimo-archivo').addEventListener('click', function () {
+    if (contadorArchivos > 0) {
+        archivosContenedor.removeChild(archivosContenedor.lastChild);
+        contadorArchivos--;
+        limiteArchivos.style.display = 'none';  // Ocultar el límite al eliminar
+    }
+});
+
+// Función para agregar otro archivo
+document.getElementById('agregar-otro-archivo').addEventListener('click', function () {
+    agregarCampoArchivo();
+});
+        </script>
+
+<!-- Sección de Contacto -->
+<section id="contacto">
+    <h2>Contacto</h2>
+    <form id="form-contacto" action="https://formspree.io/f/xldedlln" method="POST" class="centrado">
+        <input type="text" name="nombre" placeholder="Tu Nombre" required>
+        <input type="email" name="email" placeholder="Tu Email" required>
+        <textarea name="mensaje" placeholder="Escribe tu mensaje aquí" required></textarea>
+        
+        <!-- Botón de enviar para contacto -->
+        <button type="submit" class="boton-gradiente">Enviar Mensaje</button>
+    </form>
+</section>
+        
+    </main>
+
+    <!-- Footer o Pie de Página -->
+<footer>
+    <h3>Redes Sociales</h3>
+    <div class="social">
+        <a href="https://cults3d.com/es/usuarios/The_Zarrr/modelos-3d" target="_blank">
+            <img src="images/Iconos de las Redes sociales/Cults3d.svg" alt="Cults3D" class="svg svg-cults3d"> Cults3D
+        </a> | 
+        <a href="https://www.thingiverse.com/the_zarrr/designs" target="_blank">
+            <img src="images/Iconos de las Redes sociales/thingiverse.svg" alt="Thingiverse" class="svg"> Thingiverse
+        </a> | 
+        <a href="https://www.instagram.com/the.zarrr/" target="_blank">
+            <img src="images/Iconos de las Redes sociales/instagram.svg" alt="Instagram" class="svg"> Instagram
+        </a> | 
+        <a href="https://www.tiktok.com/@the_zarrr?lang=es" target="_blank">
+            <img src="images/Iconos de las Redes sociales/tiktok.svg" alt="TikTok" class="svg"> TikTok
+        </a> | 
+        <a href="https://x.com/The_Zarrr" target="_blank">
+            <img src="images/Iconos de las Redes sociales/x.svg" alt="Twitter" class="svg"> Twitter
+        </a> | 
+        <a href="https://www.twitch.tv/the_zarrr" target="_blank">
+            <img src="images/Iconos de las Redes sociales/twitch.svg" alt="Twitch" class="svg"> Twitch
+        </a> | 
+        <a href="https://kick.com/the-zarrr" target="_blank">
+            <img src="images/Iconos de las Redes sociales/kick.svg" alt="Kick" class="svg"> Kick
+        </a> |
+        <a href="https://www.youtube.com/@the_zarrr5893" target="_blank">
+            <img src="images/Iconos de las Redes sociales/youtube.svg" alt="YouTube" class="svg svg-youtube"> YouTube
+        </a>
+    </div>
+    <p class="derechos-reservados">© 2024 ALL 3D. Todos los derechos reservados.</p>
+</footer>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>
