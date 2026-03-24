@@ -8,7 +8,7 @@ const IMAGEN_PREDETERMINADA = 'images/no-image.jpeg'; // Imagen predeterminada
 
 // Función para obtener productos desde la hoja de Google Sheets
 async function obtenerProductosDesdeSheets() {
-    const endpoint = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/A:B?key=${API_KEY}`;
+    const endpoint = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Hoja%201!A2:B?key=${API_KEY}`;
     try {
         const response = await fetch(endpoint);
         const data = await response.json();
