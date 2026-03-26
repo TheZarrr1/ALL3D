@@ -31,11 +31,41 @@
         </section>
 
         <section id="tienda">
-            <h2 class="subtitulo">Tienda</h2>
-            <div class="product-container">
-                <!-- Los productos se cargarán dinámicamente aquí -->
-            </div>
-        </section>
+
+    <div class="cabecera-tienda">
+
+        <h2 class="subtitulo">Tienda</h2>
+
+        <!-- Filtro de orden -->
+        <select id="ordenar">
+            <option value="default">Ordenar por</option>
+            <option value="az">Nombre: A → Z</option>
+            <option value="za">Nombre: Z → A</option>
+            <option value="precio-menor">Precio: Menor a Mayor</option>
+            <option value="precio-mayor">Precio: Mayor a Menor</option>
+            <option value="popular">Más Popular</option>
+            <option value="tendencia">Tendencia</option>
+        </select>
+
+    </div>
+
+    <!-- CONTROLES DE BUSQUEDA -->
+    <div class="controles-tienda">
+
+        <!-- Buscador -->
+        <input 
+            type="text" 
+            id="buscador" 
+            placeholder="Buscar producto..."
+        >
+
+    </div>
+
+    <div class="product-container">
+        <!-- Los productos se cargarán dinámicamente aquí -->
+    </div>
+
+</section>
 
         <!-- Sección de Diseño Personalizado -->
         <section id="personalizado">
