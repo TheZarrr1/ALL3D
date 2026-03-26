@@ -2205,6 +2205,8 @@ animation: cambio-color 5s ease infinite;
     display: none;
 }
 
+/*AGREGUE EL BUSCADOR Y EL ORDENAR*/ 
+
 /* CONTENEDOR GENERAL */
 
 .controles-tienda {
@@ -2382,5 +2384,227 @@ animation: cambio-color 5s ease infinite;
     font-size: 16px;
 
     box-sizing: border-box;
+
+}
+
+/*CREE EL ACCESO DIRECTO A WHATSAPP*/ 
+
+nav ul li a {
+
+    position: relative;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding-bottom: 5px;
+
+    transition: transform 0.2s ease;
+
+}
+
+nav ul li a:hover {
+
+    transform: scale(1.30);
+
+}
+
+nav ul li a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 0;
+
+    height: 2px;
+
+    background-color: white;
+
+    transition: width 0.3s ease;
+
+}
+
+nav ul li a:hover::after {
+
+    width: 100%;
+
+}
+
+nav ul li a {
+
+    display: inline-block;
+
+}
+
+nav ul li {
+
+    margin-right: 50px;
+
+}
+
+@media (max-width: 768px) {
+
+    header {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+    }
+
+    nav {
+
+        position: static; /* MUY IMPORTANTE si antes estaba absolute */
+
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        margin-top: 10px;
+
+    }
+
+    nav ul {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 100%;
+
+        padding: 0;
+
+        margin: 0;
+
+        gap: 15px;
+
+    }
+
+    nav ul li {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+}
+
+@media (min-width: 769px) and (max-width: 1257px) {
+    header {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+    }
+
+    nav {
+
+        position: static; /* MUY IMPORTANTE si antes estaba absolute */
+
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        margin-top: 10px;
+
+    }
+
+    nav ul {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 100%;
+
+        padding: 0;
+
+        margin: 0;
+
+        gap: 15px;
+
+    }
+
+    nav ul li {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+}
+
+/*EL LOGO DEL INICIO LO HICE BOTON Y AHORA TE VUELVE AL PRINCIPIO*/ 
+
+.logo a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition: transform 0.2s ease;
+
+    display: inline-block;
+
+    margin-left: 50px;
+
+}
+
+.logo a:hover {
+
+    transform: scale(1.10);
+
+}
+
+@media (max-width: 768px) {
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .logo a {
+        margin-left: 0;
+    }
+
+}
+
+@media (min-width: 769px) and (max-width: 1257px) {
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .logo a {
+        margin-left: 0;
+    }
 
 }
