@@ -184,15 +184,17 @@ footer .social a {
     }
 
     .product-container {
-        flex-direction: row; /* Cambiar a row para mantener los productos en fila */
-        justify-content: center; /* Centrar en pantallas más pequeñas */
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
 
     .product {
-        width: 90%;
-        margin-bottom: 20px;
-    }
-
+    width: 180px;
+    min-width: 180px;
+    margin: 10px;
+}
     form input, form textarea, form input[type="file"], form button {
         width: 90%;
     }
@@ -489,7 +491,7 @@ button {
     }
 
     .product {
-        width: 90%;
+        width: 180px;
         margin-bottom: 20px;
     }
 
@@ -2315,7 +2317,7 @@ animation: cambio-color 5s ease infinite;
 
 /* RESPONSIVE */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
     .controles-tienda {
 
@@ -2587,6 +2589,7 @@ nav ul li {
         justify-content: center;
         align-items: center;
         width: 100%;
+        text-align: center;
     }
 
     .logo a {
@@ -2601,6 +2604,7 @@ nav ul li {
         justify-content: center;
         align-items: center;
         width: 100%;
+        text-align: center;
     }
 
     .logo a {
