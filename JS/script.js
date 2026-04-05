@@ -15,48 +15,58 @@ let productosGlobal = [];
 async function obtenerProductosDesdeSheets() {
 
     const endpoint =
-        `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Hoja%201!A2:B?key=${API_KEY}`;
+        `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Datos%20para%20subir%20a%20las%20redes%20sociales!B2:I?key=${API_KEY}`;
 
     try {
 
         const response = await fetch(endpoint);
         const data = await response.json();
 
-        if (!data.values || data.values.length < 2) {
+        if (!data.values || data.values.length === 0) {
             throw new Error('No se encontraron productos.');
         }
 
-        productosGlobal = data.values.slice(1).map(row => {
+        productosGlobal = data.values
+            .map((row, index) => {
 
-            const nombre = row[0]?.trim();
-            const precioRaw = row[1]?.trim();
+                const nombre = row[0]?.trim();   // Columna B
+                const precioRaw = row[2]?.trim(); // Columna D
+                const publicado = row[7];        // Columna I
 
-            if (!nombre || !precioRaw) return null;
+                // Mostrar solo si está publicado
+                if (
+                    !nombre ||
+                    !precioRaw ||
+                    publicado !== "TRUE"
+                ) return null;
 
-            const precio =
-                parseFloat(
-                    precioRaw
-                        .replace(/[^0-9,-]+/g, "")
-                        .replace(",", ".")
-                );
+                const precio =
+                    parseFloat(
+                        precioRaw
+                            .replace(/[^0-9,-]+/g, "")
+                            .replace(",", ".")
+                    );
 
-            const imagenRuta =
-                `${CARPETA_IMAGENES}${nombre}/${nombre} 1.jpeg`;
+                const imagenRuta =
+                    `${CARPETA_IMAGENES}${nombre}/${nombre} 1.jpeg`;
 
-            return {
+                return {
 
-                nombre: nombre,
-                precio: precio,
-                imagen: imagenRuta,
+                    nombre: nombre,
+                    precio: precio,
+                    imagen: imagenRuta,
 
-                enlace:
-                    `HTML/producto.html?producto=${
-                        encodeURIComponent(nombre)
-                    }&precio=${precio}`
+                    enlace:
+                        `HTML/producto.html?producto=${
+                            encodeURIComponent(nombre)
+                        }&precio=${precio}`,
 
-            };
+                    filaReal: index + 2
 
-        }).filter(p => p !== null);
+                };
+
+            })
+            .filter(p => p !== null);
 
         mostrarProductos(productosGlobal);
 
@@ -81,12 +91,10 @@ function mostrarProductos(productos) {
 
     contenedor.innerHTML = '';
 
-    productos.forEach((producto, index) => {
-
-        const fila = index + 2;
+    productos.forEach((producto) => {
 
         const enlaceConFila =
-            `${producto.enlace}&fila=${fila}`;
+            `${producto.enlace}&fila=${producto.filaReal}`;
 
         const div =
             document.createElement('div');
