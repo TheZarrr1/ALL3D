@@ -330,8 +330,8 @@ document.getElementById('desea-subir-archivo').addEventListener('change', functi
 // ---------------------------- Configuración de la API de Google Sheets ----------------------------
 const SHEET_ID = '1hXDhjwPD72uNNWZdoBMLPWz5lwqem8uXPDpVolZesn8';
 const API_KEY = 'AIzaSyCRssSltm27xuAc_4jrM0rDqnm8p6-QXus';
-const RANGE_COLORES = 'Hoja 1!G2:G'; // Colores disponibles
-const RANGE_NUMEROS = 'Hoja 1!C2:C'; // Número de selects para cada producto
+const RANGE_COLORES = 'Datos para subir a las redes sociales!K2:K';; // Colores disponibles
+const RANGE_NUMEROS = 'Hoja 1!C3:C'; // Número de selects para cada producto
 
 // URLs para las APIs
 const API_URL_COLORES = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_COLORES}?key=${API_KEY}`;
@@ -648,7 +648,7 @@ async function cargarColoresPorFila() {
         }
 
         // Construir URLs específicas para la fila del producto
-        const urlNumeros = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Hoja%201!C${filaProducto}:C${filaProducto}?key=${API_KEY}`;
+        const urlNumeros = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Hoja%201!C${filaProducto + 1}:C${filaProducto + 1}?key=${API_KEY}`;
         const urlColores = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_COLORES}?key=${API_KEY}`;
 
         // Realizar las solicitudes a Google Sheets
@@ -762,7 +762,7 @@ async function obtenerNumeroDeColores() {
             throw new Error('El parámetro "fila" debe ser un número válido y mayor a 0.');
         }
 
-        const urlNumeros = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Hoja 1!C${filaProducto}:C${filaProducto}?key=${API_KEY}`;
+        const urlNumeros = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Hoja 1!C${filaProducto + 1}:C${filaProducto + 1}?key=${API_KEY}`;
         const respuesta = await fetch(urlNumeros);
         if (!respuesta.ok) {
             throw new Error('Error al obtener el número de colores desde Google Sheets.');
