@@ -2616,30 +2616,44 @@ nav ul li {
 /* ===== DESCRIPCIÓN DEL PRODUCTO ===== */
 
 #producto-descripcion {
-    font-size: 16px;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.849);
-    margin: 0 0 22px 0;
     max-width: 400px;
+    margin: 0 0 22px 0;
     padding: 0;
     background: none;
     border: none;
+}
+
+#producto-descripcion p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.80);
+    margin: 0 0 10px 0;
     font-weight: 400;
     letter-spacing: 0.2px;
 }
 
+#producto-descripcion p:last-child {
+    margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
     #producto-descripcion {
-        font-size: 17px;
         max-width: 400px;
         text-align: center;
+    }
+
+    #producto-descripcion p {
+        font-size: 16px;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1257px) {
     #producto-descripcion {
-        font-size: 17px;
         max-width: 400px;
         text-align: center;
+    }
+
+    #producto-descripcion p {
+        font-size: 16px;
     }
 }

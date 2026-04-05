@@ -735,7 +735,14 @@ async function cargarDescripcion() {
         const datos = await respuesta.json();
 
         const descripcion = datos.values?.[0]?.[0] || '';
-        document.getElementById('producto-descripcion').textContent = descripcion;
+        // Separar por punto y convertir en párrafos
+        const parrafos = descripcion
+            .split('.')
+            .map(p => p.trim())
+            .filter(p => p.length > 0);
+
+        const contenedor = document.getElementById('producto-descripcion');
+        contenedor.innerHTML = parrafos.map(p => `<p>${p}.</p>`).join('');
 
     } catch (error) {
         console.error('Error al cargar la descripción:', error);
