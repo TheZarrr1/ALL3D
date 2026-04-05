@@ -719,6 +719,31 @@ function generarSelects(cantidad, opciones) {
 // ---------------------------- Inicializar carga de colores por fila ----------------------------
 document.addEventListener('DOMContentLoaded', cargarColoresPorFila);
 
+// ---------------------------- Cargar descripción desde Google Sheets ----------------------------
+async function cargarDescripcion() {
+    try {
+        if (isNaN(filaProducto) || filaProducto <= 0) {
+            throw new Error('Fila inválida.');
+        }
+
+        // Columna C de la hoja "Datos para subir a las redes sociales"
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Datos%20para%20subir%20a%20las%20redes%20sociales!C${filaProducto}:C${filaProducto}?key=${API_KEY}`;
+
+        const respuesta = await fetch(url);
+        if (!respuesta.ok) throw new Error('Error al acceder a Google Sheets.');
+
+        const datos = await respuesta.json();
+
+        const descripcion = datos.values?.[0]?.[0] || '';
+        document.getElementById('producto-descripcion').textContent = descripcion;
+
+    } catch (error) {
+        console.error('Error al cargar la descripción:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', cargarDescripcion);
+
 //-----------------------------------CANTIDAD DE PRODUCTOS----------------------------------------------------------
 
 // ---------------------------- Referencias del DOM ----------------------------
