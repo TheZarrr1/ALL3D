@@ -2657,3 +2657,23 @@ nav ul li {
         font-size: 16px;
     }
 }
+
+/*PARA MOSTRAR 2 PRODUCTOS EN PANTALLAS CHIQUITAS EN VEZ DE A UNO*/
+
+@media (max-width: 768px) {
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 5px;
+    }
+
+    .product {
+        width: calc(50% - 15px);
+        min-width: unset;
+        max-width: calc(50% - 15px);
+        margin: 0;
+        box-sizing: border-box;
+    }
+}
