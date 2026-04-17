@@ -6,14 +6,14 @@ function getQueryParam(param) {
 
 const nombreProductoConGuiones = getQueryParam('producto');
 const precioProducto = getQueryParam('precio');
-const filaProducto = parseInt(getQueryParam('fila'), 10); // Convertir a número
+const filaProducto = parseInt(getQueryParam('fila'), 10);
 const nombreProducto = nombreProductoConGuiones.replace(/-/g, ' ');
 
 document.getElementById('producto-nombre').textContent = capitalizeWords(nombreProducto);
 document.getElementById('producto-precio').textContent = `Precio: $${precioProducto}`;
 
 const imagenUrlBase = `../images/Productos de la tienda/${nombreProducto}/`;
-const noImageSrc = '../images/no-image.jpeg'; // Ruta de la imagen predeterminada
+const noImageSrc = '../images/no-image.jpeg';
 const imagenPrincipal = document.getElementById('imagen-principal');
 const videoPrincipal = document.getElementById('video-principal');
 const miniaturasContainer = document.querySelector('.miniaturas');
@@ -34,7 +34,6 @@ function esVideo(url) {
 const botonVolver = document.querySelector('.boton-volver');
 const cerrarModal = document.querySelector('.cerrar');
 
-// Ocultar el botón al abrir el modal
 imagenPrincipal.addEventListener('click', () => {
     mostrarEnModal(imagenPrincipal.src);
     botonVolver.style.display = 'none';
@@ -45,19 +44,16 @@ videoPrincipal.addEventListener('click', () => {
     botonVolver.style.display = 'none';
 });
 
-// Mostrar el botón al cerrar el modal
 cerrarModal.addEventListener('click', () => {
     modal.style.display = 'none';
     botonVolver.style.display = 'block';
 });
 
-// Función para cerrar el modal y volver a mostrar el botón de volver
 function cerrarModalHandler() {
     modal.style.display = 'none';
-    botonVolver.style.display = 'block'; // Mostrar el botón al salir del modal
+    botonVolver.style.display = 'block';
 }
 
-// Eventos para cerrar el modal y restaurar el botón de volver
 cerrarModal.addEventListener('click', cerrarModalHandler);
 modal.addEventListener('click', (e) => {
     if (e.target === modal) {
@@ -67,7 +63,6 @@ modal.addEventListener('click', (e) => {
 
 //---------------------------Crea y ordena las fotos y videos----------------------------------------------
 
-// Cargar y ordenar los medios
 function cargarMedia() {
     const tempMedios = [];
 
@@ -84,11 +79,11 @@ function cargarMedia() {
     });
 
     if (validMedios.length === 0) {
-        actualizarMediaPrincipal(noImageSrc, true); // Imagen predeterminada
+        actualizarMediaPrincipal(noImageSrc, true);
     } else {
         medios.splice(0, medios.length, ...validMedios);
-        medioActualIndex = 0; // Reinicia índice
-        sincronizarMedia(); // Actualiza vista inicial
+        medioActualIndex = 0;
+        sincronizarMedia();
         miniaturasContainer.innerHTML = '';
         validMedios.forEach((medio, index) => crearMiniatura(medio, index));
     }
@@ -96,9 +91,6 @@ function cargarMedia() {
     actualizarBotonesModal();
 }
 
-//---------------------------------Crea las miniaturasContainer-----------------------------------
-
-// Crear miniaturas
 function crearMiniatura(medio, index) {
     const miniatura = document.createElement(medio.tipo === 'img' ? 'img' : 'video');
     miniatura.src = medio.src;
@@ -116,12 +108,11 @@ function crearMiniatura(medio, index) {
     miniaturasContainer.appendChild(miniatura);
 
     miniatura.addEventListener('click', () => {
-        medioActualIndex = index; // Actualiza el índice actual
-        sincronizarMedia(); // Sincroniza la imagen principal
+        medioActualIndex = index;
+        sincronizarMedia();
     });
 }
 
-// Actualizar el contenido principal
 function actualizarMediaPrincipal(src, esPredeterminada = false) {
     if (esVideo(src)) {
         videoPrincipal.src = src;
@@ -135,39 +126,32 @@ function actualizarMediaPrincipal(src, esPredeterminada = false) {
         videoPrincipal.pause();
     }
 
-    // Deshabilitar clic en la imagen principal si es la predeterminada
     imagenPrincipal.style.pointerEvents = esPredeterminada ? 'none' : 'auto';
 }
 
-// Mostrar contenido en el modal
 function mostrarEnModal(src) {
     if (esVideo(src)) {
         modalMedia.outerHTML = `<video id="modal-img" src="${src}" controls autoplay loop muted class="modal-content"></video>`;
     } else {
         modalMedia.outerHTML = `<img id="modal-img" src="${src}" alt="Media" class="modal-content zoomable" />`;
     }
-    modalMedia = document.getElementById('modal-img'); // Actualiza referencia
+    modalMedia = document.getElementById('modal-img');
     modal.style.display = 'flex';
-    zoomActivado = false; // Resetea zoom
+    zoomActivado = false;
     actualizarBotonesModal();
 }
 
-// Mostrar u ocultar botones en el modal
 function actualizarBotonesModal() {
     anteriorImagenBtn.style.display = medios.length > 1 ? 'block' : 'none';
     siguienteImagenBtn.style.display = medios.length > 1 ? 'block' : 'none';
 }
 
-// Cerrar el modal
 modal.addEventListener('click', (e) => {
     if (e.target === modal || e.target.id === 'cerrar-modal') {
         modal.style.display = 'none';
     }
 });
 
-//-------------------------------------Navegacion dentro del modal-----------------------------------
-
-// Navegación al siguiente medio
 function mostrarMedioSiguiente() {
     if (medios.length > 0) {
         medioActualIndex = (medioActualIndex + 1) % medios.length;
@@ -182,22 +166,19 @@ function mostrarMedioAnterior() {
     }
 }
 
-
 function sincronizarMedia() {
     const src = medios[medioActualIndex].src;
-    actualizarMediaPrincipal(src); // Actualiza la imagen principal
+    actualizarMediaPrincipal(src);
     if (modal.style.display === 'flex') {
-        mostrarEnModal(src); // Actualiza el contenido del modal si está abierto
+        mostrarEnModal(src);
     }
 }
 
-// Manejo de clic en las miniaturas para abrir en el modal directamente
 function abrirModalDesdeMiniatura(index) {
     medioActualIndex = index;
     mostrarEnModal(medios[medioActualIndex].src);
 }
 
-// Eventos para los botones
 anteriorImagenBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     mostrarMedioAnterior();
@@ -208,19 +189,15 @@ siguienteImagenBtn.addEventListener('click', (e) => {
     mostrarMedioSiguiente();
 });
 
-// Inicializar el modal
 document.addEventListener('DOMContentLoaded', () => {
     cargarMedia();
 });
 
-//-----------------------------------zoom dentro del modal-------------------------------------------------
-
-// Zoom controlado en la imagen
 modal.addEventListener('click', (e) => {
     const img = document.querySelector('.zoomable');
     if (!img || e.target !== img) return;
 
-    zoomActivado = !zoomActivado; // Alternar zoom
+    zoomActivado = !zoomActivado;
     if (zoomActivado) {
         img.style.transform = 'scale(1.5)';
         img.style.cursor = 'zoom-out';
@@ -246,7 +223,7 @@ function moverZoom(e) {
         e.clientY < rect.top ||
         e.clientY > rect.bottom
     ) {
-        return; // Ignorar si el cursor está fuera de la imagen
+        return;
     }
 
     const xPercent = (x / rect.width) * 100;
@@ -255,7 +232,6 @@ function moverZoom(e) {
     img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
 }
 
-// Mostrar al hacer clic en imagen o video principal
 imagenPrincipal.addEventListener('click', () => {
     mostrarEnModal(imagenPrincipal.src);
     medioActualIndex = medios.findIndex(medio => medio.src === imagenPrincipal.src);
@@ -266,13 +242,58 @@ videoPrincipal.addEventListener('click', () => {
     medioActualIndex = medios.findIndex(medio => medio.src === videoPrincipal.src);
 });
 
-// Capitalizar palabras
 function capitalizeWords(str) {
     return str.replace(/\b\w/g, char => char.toUpperCase());
 }
 
-// Inicializar
 document.addEventListener('DOMContentLoaded', cargarMedia);
+
+
+// ========================= MAPA DE COLORES CON PREVIEW =========================
+// Si agregás un color nuevo a tu lista, agregalo acá también con su código hex
+const MAPA_COLORES = {
+    'amarillo':                                 { bg: '#FFD600' },
+    'azul fluo':                                { bg: '#1100ff' },
+    'azul pal':                                 { bg: '#5B9BD5' },
+    'blanco':                                   { bg: '#F5F5F5', border: true },
+    'celeste':                                  { bg: '#87CEEB' },
+    'cobalto (azul oscuro metalizado)':         { bg: '#1B3A6B' },
+    'dorado metalizado (oscuro)':               { bg: '#B8860B' },
+    'fucsia':                                   { bg: '#d3005f' },
+    'gris':                                     { bg: '#9E9E9E' },
+    'naraja':                                   { bg: '#FF6B1A' },
+    'negro':                                    { bg: '#1A1A1A' },
+    'piel':                                     { bg: '#EAAA7A' },
+    'rojo':                                     { bg: '#e22f2f' },
+    'rojo fluo':                                { bg: '#f81818' },
+    'rojo translucido':                         { bg: 'rgba(255, 0, 0, 0.56)' },
+    'silk: azul-verde-naranja':                 { gradient: 'conic-gradient(#1565C0 0deg 120deg, #2E7D32 120deg 240deg, #E65100 240deg 360deg)', border: true },
+    'silk: azul-violeta-negro':                 { gradient: 'conic-gradient(#1565C0 0deg 120deg, #6A1B9A 120deg 240deg, #1A1A1A 240deg 360deg)', border: true },
+    'silk: negro-rojo (fucsia mas que rojo)':   { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #E8006A 180deg 360deg)', border: true },
+    'silk: negro-violeta':                      { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #6A1B9A 180deg 360deg)', border: true },
+    'silk: plata':                              { gradient: 'conic-gradient(#B0BEC5 0deg 90deg, #E8EAEB 90deg 180deg, #90A4AE 180deg 270deg, #CFD8DC 270deg 360deg)', border: true },
+    'verde fluo':                               { bg: '#39FF14' },
+};
+
+function actualizarPreviewColor(valorColor, previewEl) {
+    const key = valorColor.toLowerCase().trim();
+    const config = MAPA_COLORES[key];
+
+    if (!config) {
+        previewEl.style.background = '#cccccc';
+        previewEl.style.border = '2px solid #999';
+        previewEl.title = valorColor;
+        previewEl.style.display = 'inline-block';
+        return;
+    }
+
+    previewEl.style.background = config.gradient || config.bg;
+    previewEl.style.border = '2px solid #000000';
+    previewEl.title = valorColor;
+    previewEl.style.display = 'inline-block';
+}
+
+// ========================= FIN MAPA DE COLORES =========================
 
 
 // Mostrar área de texto y opciones adicionales al elegir "Sí"
@@ -290,29 +311,23 @@ modificacionesSelect.addEventListener('change', function () {
         comprarConModificacionBtn.style.display = 'block';
         adjuntarArchivos.style.display = 'block';
 
-        // Eliminar mensaje de error existente si se vuelve a seleccionar "Sí"
         if (errorMensaje) {
             errorMensaje.remove();
         }
     } else {
-        // Resetear los estados de la segunda pregunta
         deseaSubirArchivo.value = 'no';
-        mensajeAdjuntar.style.display = 'none'; // Oculta el mensaje si estaba visible
-        adjuntarArchivos.style.display = 'none'; // Oculta la sección de adjuntar archivos
-
-        // Ocultar los elementos relacionados con modificaciones
+        mensajeAdjuntar.style.display = 'none';
+        adjuntarArchivos.style.display = 'none';
         notaModificacion.style.display = 'none';
         comprarConModificacionBtn.style.display = 'none';
-        notaModificacion.value = ''; // Limpiar el contenido del textarea
+        notaModificacion.value = '';
 
-        // Eliminar mensaje de error si existe
         if (errorMensaje) {
             errorMensaje.remove();
         }
     }
 });
 
-// Mostrar mensaje al seleccionar "Sí" en adjuntar archivo
 document.getElementById('desea-subir-archivo').addEventListener('change', function () {
     const mensajeAdjuntar = document.getElementById('mensaje-adjuntar');
 
@@ -327,31 +342,25 @@ document.getElementById('desea-subir-archivo').addEventListener('change', functi
 
 //-------------------------------------Utilizando el metodo de google sheets en drive automaticamente------------------------------------------------------
 
-// ---------------------------- Configuración de la API de Google Sheets ----------------------------
 const SHEET_ID = '1hXDhjwPD72uNNWZdoBMLPWz5lwqem8uXPDpVolZesn8';
 const API_KEY = 'AIzaSyCRssSltm27xuAc_4jrM0rDqnm8p6-QXus';
-const RANGE_COLORES = 'Datos para subir a las redes sociales!K2:K';; // Colores disponibles
-const RANGE_NUMEROS = 'Hoja 1!C3:C'; // Número de selects para cada producto
+const RANGE_COLORES = 'Datos para subir a las redes sociales!K2:K';
+const RANGE_NUMEROS = 'Hoja 1!C3:C';
 
-// URLs para las APIs
 const API_URL_COLORES = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_COLORES}?key=${API_KEY}`;
 const API_URL_NUMEROS = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_NUMEROS}?key=${API_KEY}`;
 
-// ---------------------------- Referencias del DOM ----------------------------
 const colorFilamentoContainer = document.getElementById('color-filamento-container');
 const comprarBoton = document.getElementById('comprar-boton');
 const notaModificacionInput = document.getElementById('nota-modificacion');
 
-// ---------------------------- Obtener índice del producto ----------------------------
 function obtenerIndiceProducto(nombreProducto, nombresProductos) {
     const index = nombresProductos.findIndex(producto => producto.toLowerCase() === nombreProducto.toLowerCase());
     return index !== -1 ? index : null;
 }
 
-// ---------------------------- Cargar colores y número de selects desde Google Sheets ----------------------------
 async function cargarColoresYNumero() {
     try {
-        // Realizar las solicitudes a las APIs
         const [respuestaColores, respuestaNumeros] = await Promise.all([
             fetch(API_URL_COLORES),
             fetch(API_URL_NUMEROS),
@@ -368,20 +377,17 @@ async function cargarColoresYNumero() {
             throw new Error('Datos incompletos.');
         }
 
-        // Obtener el nombre del producto desde la página
         const nombreProducto = document.getElementById('producto-nombre').textContent.trim();
-        const nombresProductos = datosNumeros.values.map(fila => fila[0]); // Lista de nombres desde la hoja
+        const nombresProductos = datosNumeros.values.map(fila => fila[0]);
         const indexProducto = obtenerIndiceProducto(nombreProducto, nombresProductos);
 
         if (indexProducto === null || !datosNumeros.values[indexProducto]) {
             throw new Error("Índice de producto inválido o datos incompletos.");
         }
 
-        // Obtener los datos necesarios
         const numeroColoresInicial = parseInt(datosNumeros.values[indexProducto][0], 10) || 1;
         const opcionesColores = datosColores.values.map(fila => fila[0]);
 
-        // Generar los selects dinámicamente
         generarSelects(numeroColoresInicial, opcionesColores);
     } catch (error) {
         console.error('Error al cargar colores y número de selects:', error);
@@ -389,42 +395,49 @@ async function cargarColoresYNumero() {
     }
 }
 
-// ---------------------------- Generar selects dinámicamente ----------------------------
+// ========================= FUNCIÓN GENERARSELECTS CON PREVIEW =========================
 function generarSelects(cantidad, opciones) {
-    colorFilamentoContainer.innerHTML = ''; // Limpiar contenedor
+    colorFilamentoContainer.innerHTML = '';
+
     for (let i = 0; i < cantidad; i++) {
-        agregarSelectColor(opciones);
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('color-select-wrapper');
+
+        const select = document.createElement('select');
+        select.name = `color-${i + 1}`;
+        select.classList.add('styled-select');
+        select.required = true;
+
+        const opcionPredeterminada = document.createElement('option');
+        opcionPredeterminada.value = '';
+        opcionPredeterminada.disabled = true;
+        opcionPredeterminada.selected = true;
+        opcionPredeterminada.textContent = 'Elegir color';
+        select.appendChild(opcionPredeterminada);
+
+        opciones.forEach(color => {
+            const opcion = document.createElement('option');
+            opcion.value = color.toLowerCase();
+            opcion.textContent = color;
+            select.appendChild(opcion);
+        });
+
+        const preview = document.createElement('div');
+        preview.classList.add('color-preview-bubble');
+
+        select.addEventListener('change', () => {
+            actualizarPreviewColor(select.value, preview);
+        });
+
+        wrapper.appendChild(select);
+        wrapper.appendChild(preview);
+        colorFilamentoContainer.appendChild(wrapper);
     }
 }
+// ========================= FIN FUNCIÓN GENERARSELECTS =========================
 
-// ---------------------------- Función para agregar un select dinámico ----------------------------
-function agregarSelectColor(opciones) {
-    const select = document.createElement('select');
-    select.name = `color-${colorFilamentoContainer.childElementCount + 1}`;
-    select.classList.add('styled-select');
-    select.required = true;
-
-    const opcionPredeterminada = document.createElement('option');
-    opcionPredeterminada.value = '';
-    opcionPredeterminada.disabled = true;
-    opcionPredeterminada.selected = true;
-    opcionPredeterminada.textContent = 'Elegir color';
-    select.appendChild(opcionPredeterminada);
-
-    opciones.forEach(color => {
-        const opcion = document.createElement('option');
-        opcion.value = color.toLowerCase();
-        opcion.textContent = color;
-        select.appendChild(opcion);
-    });
-
-    colorFilamentoContainer.appendChild(select);
-}
-
-// ---------------------------- Inicializar ----------------------------
 document.addEventListener('DOMContentLoaded', cargarColoresYNumero);
 
-// ---------------------------- Mostrar mensaje al elegir modificaciones ----------------------------
 document.getElementById('modificaciones').addEventListener('change', function () {
     const notaModificacion = document.getElementById('nota-modificacion');
     const comprarConModificacionBtn = document.getElementById('comprar-con-modificacion');
@@ -443,30 +456,22 @@ document.getElementById('modificaciones').addEventListener('change', function ()
 
 //-----------------------------ANIMACION Y CONFIGURACION DE BOTONES DE COMPRAR----------------------------------
 
-// ----------------------------- Botón de comprar ahora -----------------------------
 comprarBoton.addEventListener('click', () => {
     const nombreProducto = document.getElementById('producto-nombre').textContent;
 
-    // Obtener y limpiar el precio del producto
     const precioTexto = document.getElementById('producto-precio').textContent;
-    const precioProducto = parseFloat(precioTexto.replace(/[^\d.-]/g, '')); // Eliminar cualquier carácter no numérico
+    const precioProducto = parseFloat(precioTexto.replace(/[^\d.-]/g, ''));
 
-    const cantidadSeleccionada = parseInt(cantidadProductoSelect.value, 10); // Obtener cantidad seleccionada
+    const cantidadSeleccionada = parseInt(cantidadProductoSelect.value, 10);
 
-    // Validar cantidad seleccionada
     if (cantidadSeleccionada <= 0 || isNaN(cantidadSeleccionada)) {
         alert('Por favor selecciona una cantidad válida.');
         return;
     }
 
-    // Verificar si es una compra de una unidad o varias
     if (cantidadSeleccionada === 1) {
-        // Mensaje para una sola unidad
-        let mensaje = `Hola, quiero comprar 1 unidad del producto: ${nombreProducto}.
-Precio por unidad: $${precioProducto.toLocaleString('es-AR')}.
-`;
+        let mensaje = `Hola, quiero comprar 1 unidad del producto: ${nombreProducto}.\nPrecio por unidad: $${precioProducto.toLocaleString('es-AR')}.\n`;
 
-        // Obtener los colores seleccionados
         const coloresSeleccionados = [];
         for (let j = 0; j < numeroDeColores; j++) {
             const select = document.querySelector(`select[name="color-${j + 1}"]`);
@@ -474,7 +479,6 @@ Precio por unidad: $${precioProducto.toLocaleString('es-AR')}.
             coloresSeleccionados.push(colorSeleccionado);
         }
 
-        // Añadir colores al mensaje
         if (coloresSeleccionados.length === 1) {
             mensaje += `Color seleccionado: ${coloresSeleccionados.join(', ')}.`;
         } else {
@@ -484,14 +488,9 @@ Precio por unidad: $${precioProducto.toLocaleString('es-AR')}.
         const mensajeCodificado = encodeURIComponent(mensaje);
         window.open(`https://wa.me/5491128313561?text=${mensajeCodificado}`, '_blank');
     } else {
-        // Mensaje para múltiples unidades
         const precioTotal = precioProducto * cantidadSeleccionada;
-        let mensaje = `Hola, quiero comprar ${cantidadSeleccionada} unidades del producto: ${nombreProducto}.
-Precio por unidad: $${precioProducto.toLocaleString('es-AR')}.
-Precio total: $${precioTotal.toLocaleString('es-AR')}.
-`;
+        let mensaje = `Hola, quiero comprar ${cantidadSeleccionada} unidades del producto: ${nombreProducto}.\nPrecio por unidad: $${precioProducto.toLocaleString('es-AR')}.\nPrecio total: $${precioTotal.toLocaleString('es-AR')}.\n`;
 
-        // Obtener los colores seleccionados
         let indiceColor = 1;
         for (let i = 1; i <= cantidadSeleccionada; i++) {
             mensaje += `\nUnidad (${i}):\n`;
@@ -509,7 +508,6 @@ Precio total: $${precioTotal.toLocaleString('es-AR')}.
     }
 });
 
-// Evento para manejar cambios en "¿Deseas alguna modificación en el producto?"
 document.getElementById('modificaciones').addEventListener('change', function () {
     const notaModificacion = document.getElementById('nota-modificacion');
     const comprarConModificacionBtn = document.getElementById('comprar-con-modificacion');
@@ -518,46 +516,33 @@ document.getElementById('modificaciones').addEventListener('change', function ()
     const opcionesModificacion = document.querySelector('.opciones-modificacion');
 
     if (this.value === 'si') {
-        // Mostrar elementos dinámicos con animación
         notaModificacion.classList.add('mostrar');
         comprarConModificacionBtn.classList.add('mostrar');
         adjuntarArchivos.classList.add('mostrar');
-
-        // Aplicar la animación para ocultar el botón "Comprar Ahora"
         comprarBoton.classList.add('oculto');
-
-        // Asegurar que el contenedor se ajuste automáticamente
         opcionesModificacion.style.height = 'auto';
     } else {
-        // Ocultar elementos dinámicos
         notaModificacion.classList.remove('mostrar');
         comprarConModificacionBtn.classList.remove('mostrar');
         adjuntarArchivos.classList.remove('mostrar');
-
-        // Aplicar la animación para mostrar el botón "Comprar Ahora"
         comprarBoton.classList.remove('oculto');
-
-        // Asegurar que el contenedor se ajuste automáticamente
         opcionesModificacion.style.height = 'auto';
     }
 });
 
-// Validación y acción del botón "Comprar con Modificación"
 document.getElementById('comprar-con-modificacion').addEventListener('click', () => {
     const nombreProducto = document.getElementById('producto-nombre').textContent;
 
-    // Obtener y limpiar el precio del producto
     const precioTexto = document.getElementById('producto-precio').textContent;
-    const precioProducto = parseFloat(precioTexto.replace(/[^\d.-]/g, '')); // Eliminar caracteres no numéricos
+    const precioProducto = parseFloat(precioTexto.replace(/[^\d.-]/g, ''));
 
     const notaModificacionInput = document.getElementById('nota-modificacion');
     const notaModificacion = notaModificacionInput.value.trim();
     const deseaSubirArchivoSelect = document.getElementById('desea-subir-archivo');
     const deseaSubirArchivo = deseaSubirArchivoSelect ? deseaSubirArchivoSelect.value : 'no';
 
-    const cantidadSeleccionada = parseInt(cantidadProductoSelect.value, 10); // Obtener cantidad seleccionada
+    const cantidadSeleccionada = parseInt(cantidadProductoSelect.value, 10);
 
-    // Validar si la nota de modificación está vacía
     const errorMensajeId = 'error-modificacion';
     const errorMensaje = document.getElementById(errorMensajeId);
 
@@ -571,20 +556,14 @@ document.getElementById('comprar-con-modificacion').addEventListener('click', ()
             nuevoError.style.fontSize = '14px';
             notaModificacionInput.after(nuevoError);
         }
-        return; // Detener ejecución si la validación falla
+        return;
     } else if (errorMensaje) {
         errorMensaje.remove();
     }
 
-    // Verificar si es una compra de una unidad o varias
     if (cantidadSeleccionada === 1) {
-        // Mensaje para una sola unidad
-        let mensaje = `Hola, quiero comprar 1 unidad del producto: ${nombreProducto}.
-Precio por unidad: $${precioProducto.toLocaleString('es-AR')}.
-Nota de modificación: ${notaModificacion}.
-`;
+        let mensaje = `Hola, quiero comprar 1 unidad del producto: ${nombreProducto}.\nPrecio por unidad: $${precioProducto.toLocaleString('es-AR')}.\nNota de modificación: ${notaModificacion}.\n`;
 
-        // Obtener los colores seleccionados
         const coloresSeleccionados = [];
         for (let j = 0; j < numeroDeColores; j++) {
             const select = document.querySelector(`select[name="color-${j + 1}"]`);
@@ -592,7 +571,6 @@ Nota de modificación: ${notaModificacion}.
             coloresSeleccionados.push(colorSeleccionado);
         }
 
-        // Añadir colores al mensaje
         if (coloresSeleccionados.length === 1) {
             mensaje += `Color seleccionado: ${coloresSeleccionados.join(', ')}.`;
         } else {
@@ -606,15 +584,9 @@ Nota de modificación: ${notaModificacion}.
         const mensajeCodificado = encodeURIComponent(mensaje);
         window.open(`https://wa.me/5491128313561?text=${mensajeCodificado}`, '_blank');
     } else {
-        // Mensaje para múltiples unidades
         const precioTotal = precioProducto * cantidadSeleccionada;
-        let mensaje = `Hola, quiero comprar ${cantidadSeleccionada} unidades del producto: ${nombreProducto}.
-Precio por unidad: $${precioProducto.toLocaleString('es-AR')}.
-Precio total: $${precioTotal.toLocaleString('es-AR')}.
-Nota de modificación: ${notaModificacion}.
-`;
+        let mensaje = `Hola, quiero comprar ${cantidadSeleccionada} unidades del producto: ${nombreProducto}.\nPrecio por unidad: $${precioProducto.toLocaleString('es-AR')}.\nPrecio total: $${precioTotal.toLocaleString('es-AR')}.\nNota de modificación: ${notaModificacion}.\n`;
 
-        // Obtener los colores seleccionados
         let indiceColor = 1;
         for (let i = 1; i <= cantidadSeleccionada; i++) {
             mensaje += `\nUnidad (${i}):\n`;
@@ -636,28 +608,22 @@ Nota de modificación: ${notaModificacion}.
     }
 });
 
-// Inicializar la funcionalidad
 document.addEventListener('DOMContentLoaded', cargarColoresYNumero);
 
-// ---------------------------- Cargar colores basado en fila de la URL ----------------------------
 async function cargarColoresPorFila() {
     try {
-        // Validar si el parámetro "fila" es válido
         if (isNaN(filaProducto) || filaProducto <= 0) {
             throw new Error('El parámetro "fila" debe ser un número válido y mayor a 0.');
         }
 
-        // Construir URLs específicas para la fila del producto
         const urlNumeros = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Hoja%201!C${filaProducto + 1}:C${filaProducto + 1}?key=${API_KEY}`;
         const urlColores = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_COLORES}?key=${API_KEY}`;
 
-        // Realizar las solicitudes a Google Sheets
         const [respuestaNumeros, respuestaColores] = await Promise.all([
             fetch(urlNumeros),
             fetch(urlColores),
         ]);
 
-        // Validar respuestas de las APIs
         if (!respuestaNumeros.ok || !respuestaColores.ok) {
             throw new Error('Error al acceder a los datos de Google Sheets.');
         }
@@ -678,9 +644,8 @@ async function cargarColoresPorFila() {
             throw new Error('No hay colores disponibles en la hoja.');
         }
 
-        const opcionesColores = datosColores.values.map(fila => fila[0]); // Lista de colores disponibles
+        const opcionesColores = datosColores.values.map(fila => fila[0]);
 
-        // Generar los selects dinámicamente
         generarSelects(numeroSelects, opcionesColores);
     } catch (error) {
         console.error('Error al cargar colores por fila:', error);
@@ -688,45 +653,14 @@ async function cargarColoresPorFila() {
     }
 }
 
-// ---------------------------- Generar selects dinámicamente ----------------------------
-function generarSelects(cantidad, opciones) {
-    colorFilamentoContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos selects
-
-    for (let i = 0; i < cantidad; i++) {
-        const select = document.createElement('select');
-        select.name = `color-${i + 1}`;
-        select.classList.add('styled-select');
-        select.required = true;
-
-        const opcionPredeterminada = document.createElement('option');
-        opcionPredeterminada.value = '';
-        opcionPredeterminada.disabled = true;
-        opcionPredeterminada.selected = true;
-        opcionPredeterminada.textContent = 'Elegir color';
-        select.appendChild(opcionPredeterminada);
-
-        opciones.forEach(color => {
-            const opcion = document.createElement('option');
-            opcion.value = color.toLowerCase();
-            opcion.textContent = color;
-            select.appendChild(opcion);
-        });
-
-        colorFilamentoContainer.appendChild(select);
-    }
-}
-
-// ---------------------------- Inicializar carga de colores por fila ----------------------------
 document.addEventListener('DOMContentLoaded', cargarColoresPorFila);
 
-// ---------------------------- Cargar descripción desde Google Sheets ----------------------------
 async function cargarDescripcion() {
     try {
         if (isNaN(filaProducto) || filaProducto <= 0) {
             throw new Error('Fila inválida.');
         }
 
-        // Columna C de la hoja "Datos para subir a las redes sociales"
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Datos%20para%20subir%20a%20las%20redes%20sociales!C${filaProducto}:C${filaProducto}?key=${API_KEY}`;
 
         const respuesta = await fetch(url);
@@ -735,7 +669,6 @@ async function cargarDescripcion() {
         const datos = await respuesta.json();
 
         const descripcion = datos.values?.[0]?.[0] || '';
-        // Separar por punto y convertir en párrafos
         const parrafos = descripcion
             .split('.')
             .map(p => p.trim())
@@ -753,20 +686,17 @@ document.addEventListener('DOMContentLoaded', cargarDescripcion);
 
 //-----------------------------------CANTIDAD DE PRODUCTOS----------------------------------------------------------
 
-// ---------------------------- Referencias del DOM ----------------------------
 const cantidadProductoSelect = document.getElementById('cantidad-producto');
 const coloresProductoContainer = document.getElementById('colores-producto');
 
-let coloresDisponibles = []; // Se llenará con los colores del Google Sheets
-let numeroDeColores = 0; // Número de selects predeterminado para el producto
+let coloresDisponibles = [];
+let numeroDeColores = 0;
 
-// ---------------------------- Obtener fila desde la URL ----------------------------
 function obtenerFilaDesdeURL() {
     const params = new URLSearchParams(window.location.search);
-    return parseInt(params.get('fila'), 10); // Fila de Google Sheets
+    return parseInt(params.get('fila'), 10);
 }
 
-// ---------------------------- Obtener colores desde Google Sheets ----------------------------
 async function obtenerColoresDesdeDrive() {
     try {
         const respuesta = await fetch(API_URL_COLORES);
@@ -779,17 +709,16 @@ async function obtenerColoresDesdeDrive() {
             throw new Error('No se encontraron colores en la hoja.');
         }
 
-        coloresDisponibles = datos.values.map(fila => fila[0]); // Llenar con los colores disponibles
+        coloresDisponibles = datos.values.map(fila => fila[0]);
     } catch (error) {
         console.error('Error al cargar los colores:', error);
         coloresProductoContainer.innerHTML = '<p style="color: red;">Error al cargar los colores.</p>';
     }
 }
 
-// ---------------------------- Obtener número de selects predeterminado ----------------------------
 async function obtenerNumeroDeColores() {
     try {
-        const filaProducto = obtenerFilaDesdeURL(); // Obtener la fila desde la URL
+        const filaProducto = obtenerFilaDesdeURL();
         if (isNaN(filaProducto) || filaProducto <= 0) {
             throw new Error('El parámetro "fila" debe ser un número válido y mayor a 0.');
         }
@@ -805,23 +734,19 @@ async function obtenerNumeroDeColores() {
             throw new Error('No se encontró un número válido en la fila especificada.');
         }
 
-        numeroDeColores = parseInt(datos.values[0][0], 10) || 1; // Número de colores predeterminado
+        numeroDeColores = parseInt(datos.values[0][0], 10) || 1;
     } catch (error) {
         console.error('Error al obtener el número de colores predeterminado:', error);
     }
 }
 
-// ---------------------------- Generar Selectores de Colores Dinámicamente ----------------------------
+// ========================= FUNCIÓN GENERARSELECTORES CON PREVIEW =========================
 function generarSelectoresAdicionales(cantidad) {
-    // Vaciar el contenedor de colores primero
     coloresProductoContainer.innerHTML = "";
 
-    // No generar textos ni selects adicionales si la cantidad es 1
     if (cantidad <= 1) return;
 
-    // Generar textos y selects para cada cantidad adicional
     for (let i = 2; i <= cantidad; i++) {
-        // Crear el texto para la cantidad seleccionada
         const titulo = document.createElement("p");
         titulo.textContent = `Color del ${nombreProducto} (${i})`;
         titulo.style.fontWeight = 'bold';
@@ -829,20 +754,17 @@ function generarSelectoresAdicionales(cantidad) {
         titulo.style.marginBottom = '5px';
         coloresProductoContainer.appendChild(titulo);
 
-        // Generar selects según el número de colores predeterminado
         for (let j = 0; j < numeroDeColores; j++) {
-            const grupo = document.createElement("div");
-            grupo.classList.add("colores-grupo");
-
-            const select = crearSelectColores((i - 1) * numeroDeColores + j + 1);
-            grupo.appendChild(select);
-            coloresProductoContainer.appendChild(grupo);
+            const wrapper = crearSelectColores((i - 1) * numeroDeColores + j + 1);
+            coloresProductoContainer.appendChild(wrapper);
         }
     }
 }
 
-// ---------------------------- Crear un Select de Colores ----------------------------
 function crearSelectColores(indice) {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("color-select-wrapper");
+
     const select = document.createElement("select");
     select.name = `color-${indice}`;
     select.classList.add("color-select");
@@ -862,18 +784,27 @@ function crearSelectColores(indice) {
         select.appendChild(option);
     });
 
-    return select;
-}
+    const preview = document.createElement("div");
+    preview.classList.add("color-preview-bubble");
 
-// ---------------------------- Evento para manejar cambios en el selector de cantidad ----------------------------
+    select.addEventListener('change', () => {
+        actualizarPreviewColor(select.value, preview);
+    });
+
+    wrapper.appendChild(select);
+    wrapper.appendChild(preview);
+
+    return wrapper;
+}
+// ========================= FIN FUNCIÓN GENERARSELECTORES =========================
+
 cantidadProductoSelect.addEventListener("change", (e) => {
     const cantidadSeleccionada = parseInt(e.target.value, 10);
     generarSelectoresAdicionales(cantidadSeleccionada);
 });
 
-// ---------------------------- Inicializar al cargar la página ----------------------------
 document.addEventListener("DOMContentLoaded", async () => {
-    await obtenerColoresDesdeDrive(); // Obtener colores desde Google Sheets
-    await obtenerNumeroDeColores(); // Obtener el número de colores predeterminado
-    generarSelectoresAdicionales(parseInt(cantidadProductoSelect.value, 10)); // Generar los selects iniciales
+    await obtenerColoresDesdeDrive();
+    await obtenerNumeroDeColores();
+    generarSelectoresAdicionales(parseInt(cantidadProductoSelect.value, 10));
 });
