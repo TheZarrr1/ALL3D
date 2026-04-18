@@ -271,7 +271,7 @@ const MAPA_COLORES = {
     'silk: azul-violeta-negro':                 { gradient: 'conic-gradient(#1565C0 0deg 120deg, #6A1B9A 120deg 240deg, #1A1A1A 240deg 360deg)', border: true },
     'silk: negro-rojo (fucsia mas que rojo)':   { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #E8006A 180deg 360deg)', border: true },
     'silk: negro-violeta':                      { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #6A1B9A 180deg 360deg)', border: true },
-    'silk: plata':                              { gradient: 'conic-gradient(#B0BEC5 0deg 90deg, #E8EAEB 90deg 180deg, #90A4AE 180deg 270deg, #CFD8DC 270deg 360deg)', border: true },
+    'silk: plata':                              { gradient: 'conic-gradient(#C0C0C0 0deg 360deg)', border: true },
     'verde fluo':                               { bg: '#39FF14' },
 };
 

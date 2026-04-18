@@ -69,146 +69,43 @@
 
 </section>
 
-        <!-- Sección de Diseño Personalizado -->
-        <section id="personalizado">
+<section id="personalizado">
             <h2>Diseño Personalizado</h2>
             <p class="centrado-texto">¿Tienes una idea para un diseño personalizado? Déjame saber lo que necesitas y trabajaré contigo para hacerlo realidad.</p>
 
-            <!-- Formulario -->
-            <form id="form-personalizado" action="https://getform.io/f/bollgmwa" method="POST" enctype="multipart/form-data" class="centrado">
-                <input type="text" name="nombre" placeholder="Tu Nombre" required>
-                <textarea name="detalles" placeholder="Describe tu idea aquí" required></textarea>
+            <div class="centrado">
+                <input type="text" id="nombre-personalizado" placeholder="Tu Nombre">
+                <textarea id="detalles-personalizado" placeholder="Describe tu idea aquí"></textarea>
 
-                <!-- Pregunta si desea agregar archivos -->
+                <!-- Pregunta si desea adjuntar archivos -->
                 <div class="adjuntar-archivos-opcion">
-                    <label for="quiere-archivos">¿Deseas adjuntar algún archivo para ayudar a lo que describes?</label>
-                    <select id="quiere-archivos" name="quiere-archivos">
+                    <label for="quiere-archivos-personalizado">¿Deseas adjuntar algún archivo para ayudar a lo que describes?</label>
+                    <select id="quiere-archivos-personalizado">
                         <option value="no">No</option>
                         <option value="si">Sí</option>
                     </select>
                 </div>
 
-                <!-- Contenedor de archivos con estilo personalizado -->
-                <div id="archivos-contenedor" style="display: none; margin-top: 15px;">
-                    <!-- Aquí se agregarán los archivos -->
-                </div>
+                <!-- Mensaje que aparece si elige Sí -->
+                <p id="mensaje-adjuntar-personalizado" style="display:none; margin-top: 10px; font-size: 15px; color: white; background-color: rgba(0,0,0,0.45); border: 1px solid white; padding: 10px; border-radius: 10px; max-width: 400px; text-align: center;">
+                    Por favor, adjuntá los archivos (imágenes o videos) directamente en el chat de WhatsApp después de enviar el mensaje.
+                </p>
 
-                <!-- Opciones para agregar o eliminar archivos -->
-                <div id="pregunta-archivos" style="margin-top: 7px; display: none;">
-                    <div class="opciones">
-                        <button type="button" class="boton-gradiente" id="agregar-otro-archivo">Agregar otro archivo</button>
-                        <span>o</span>
-                        <button type="button" class="boton-gradiente" id="eliminar-ultimo-archivo">Eliminar el último archivo</button>
-                    </div>
-                </div>
-
-                <!-- Límite de archivos -->
-                <p id="limite-archivos" style="color: red; display: none;">Has alcanzado el límite de 10 archivos.</p>
-
-                <!-- Botón de enviar -->
-                <button type="submit" class="boton-gradiente">Enviar Pedido</button>
-            </form>
+                <button class="boton-gradiente" onclick="enviarPersonalizadoWsp()">Enviar Pedido</button>
+            </div>
         </section>
 
-        <!-- Script actualizado para el formulario -->
-        <script>
-            let contadorArchivos = 0;  // Inicializa sin archivos agregados
-const maxArchivos = 10;    // Máximo de archivos permitidos
-const archivosContenedor = document.getElementById('archivos-contenedor');
-const preguntaArchivos = document.getElementById('pregunta-archivos');
-const limiteArchivos = document.getElementById('limite-archivos');
+        <!-- Sección de Contacto -->
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <div class="centrado">
+                <input type="text" id="nombre-contacto" placeholder="Tu Nombre">
+                <input type="email" id="email-contacto" placeholder="Tu Email">
+                <textarea id="mensaje-contacto" placeholder="Escribe tu mensaje aquí"></textarea>
+                <button class="boton-gradiente" onclick="enviarContactoWsp()">Enviar Mensaje</button>
+            </div>
+        </section>
 
-// Mostrar el campo de archivos si el usuario elige "Sí"
-document.getElementById('quiere-archivos').addEventListener('change', function () {
-    if (this.value === 'si') {
-        if (contadorArchivos === 0) {
-            agregarCampoArchivo();  // Agregar solo un campo de archivo la primera vez
-        }
-        preguntaArchivos.style.display = 'block';  // Mostrar las opciones de agregar/eliminar archivo
-    } else {
-        archivosContenedor.style.display = 'none';
-        preguntaArchivos.style.display = 'none';
-        archivosContenedor.innerHTML = '';  // Limpiar los campos si elige "No"
-        limiteArchivos.style.display = 'none';  // Ocultar el mensaje de límite
-        contadorArchivos = 0;  // Reiniciar el contador
-    }
-});
-
-// Función para agregar un nuevo campo de archivo
-function agregarCampoArchivo() {
-    if (contadorArchivos < maxArchivos) {
-        archivosContenedor.style.display = 'block';
-
-        // Crear un nuevo campo de subida de archivo personalizado
-        const nuevoWrapper = document.createElement('div');
-        nuevoWrapper.classList.add('file-upload-wrapper');
-
-        const nuevoInput = document.createElement('input');
-        nuevoInput.type = 'file';
-        nuevoInput.name = 'archivos[]';
-        nuevoInput.accept = '*';
-        nuevoInput.id = 'file-upload-' + contadorArchivos;
-        nuevoInput.classList.add('file-input');
-        nuevoInput.style.display = 'none';
-
-        const nuevoLabel = document.createElement('label');
-        nuevoLabel.htmlFor = 'file-upload-' + contadorArchivos;
-        nuevoLabel.classList.add('custom-file-upload');
-        nuevoLabel.textContent = 'Subir Archivo';
-
-        const nuevoSpan = document.createElement('span');
-        nuevoSpan.id = 'file-name-' + contadorArchivos;
-        nuevoSpan.classList.add('file-name');
-        nuevoSpan.textContent = 'No se ha seleccionado ningún archivo';
-
-        // Añadir los eventos
-        nuevoInput.addEventListener('change', function() {
-            const fileName = nuevoInput.files[0] ? nuevoInput.files[0].name : "No se ha seleccionado ningún archivo";
-            nuevoSpan.textContent = fileName;
-        });
-
-        // Añadir todo al contenedor
-        nuevoWrapper.appendChild(nuevoInput);
-        nuevoWrapper.appendChild(nuevoLabel);
-        nuevoWrapper.appendChild(nuevoSpan);
-        archivosContenedor.appendChild(nuevoWrapper);
-
-        contadorArchivos++;
-
-        // Mostrar mensaje de límite al alcanzar el máximo, pero no ocultar el botón de eliminar
-        if (contadorArchivos >= maxArchivos) {
-            limiteArchivos.style.display = 'block';
-        }
-    }
-}
-
-// Función para eliminar el último archivo
-document.getElementById('eliminar-ultimo-archivo').addEventListener('click', function () {
-    if (contadorArchivos > 0) {
-        archivosContenedor.removeChild(archivosContenedor.lastChild);
-        contadorArchivos--;
-        limiteArchivos.style.display = 'none';  // Ocultar el límite al eliminar
-    }
-});
-
-// Función para agregar otro archivo
-document.getElementById('agregar-otro-archivo').addEventListener('click', function () {
-    agregarCampoArchivo();
-});
-        </script>
-
-<!-- Sección de Contacto -->
-<section id="contacto">
-    <h2>Contacto</h2>
-    <form id="form-contacto" action="https://formspree.io/f/xldedlln" method="POST" class="centrado">
-        <input type="text" name="nombre" placeholder="Tu Nombre" required>
-        <input type="email" name="email" placeholder="Tu Email" required>
-        <textarea name="mensaje" placeholder="Escribe tu mensaje aquí" required></textarea>
-        
-        <!-- Botón de enviar para contacto -->
-        <button type="submit" class="boton-gradiente">Enviar Mensaje</button>
-    </form>
-</section>
 
         <section id="acerca-de-mi">
             <h2>Acerca de mí</h2>

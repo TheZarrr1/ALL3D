@@ -2710,3 +2710,34 @@ nav ul li {
     min-width: 220px;
     max-width: 320px;
 }
+
+form input,
+form textarea {
+    border-radius: 12px;
+}
+
+/* ===== CAMPOS SIN FORM (secciones personalizado y contacto) ===== */
+.centrado input,
+.centrado textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    box-sizing: border-box;
+}
+
+.centrado textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+.centrado input:focus,
+.centrado textarea:focus {
+    outline: none;
+    border: 1px solid #ff4b2b;
+}
