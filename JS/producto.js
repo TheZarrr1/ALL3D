@@ -291,6 +291,98 @@ function actualizarPreviewColor(valorColor, previewEl) {
     previewEl.style.border = '2px solid #000000';
     previewEl.title = valorColor;
     previewEl.style.display = 'inline-block';
+
+    // Buscar o crear el link "Ver ejemplo"
+    const wrapper = previewEl.closest('.color-select-wrapper');
+    let linkEjemplo = wrapper.querySelector('.link-ver-ejemplo');
+    if (!linkEjemplo) {
+        linkEjemplo = document.createElement('span');
+        linkEjemplo.classList.add('link-ver-ejemplo');
+        linkEjemplo.textContent = 'Ver ejemplo';
+        wrapper.appendChild(linkEjemplo);
+    }
+
+    const select = wrapper.querySelector('select');
+    const opcionSeleccionada = Array.from(select.options).find(o => o.value === valorColor);
+    const nombreCarpeta = opcionSeleccionada ? opcionSeleccionada.textContent.trim() : valorColor;
+
+    linkEjemplo.onclick = () => abrirModalColor(nombreCarpeta);
+    linkEjemplo.style.display = 'inline-block';
+}
+
+// ========================= MODAL DE FOTOS DE COLOR =========================
+
+let fotosColorActuales = [];
+let fotoColorIndex = 0;
+
+function abrirModalColor(nombreColor) {
+    fotosColorActuales = [];
+    fotoColorIndex = 0;
+
+    const baseUrl = `../images/Ejemplos de colores/${nombreColor}/`;
+    const extensiones = ['jpeg', 'jpg', 'png'];
+    const maxFotos = 10;
+    let intentos = 0;
+
+    function cargarFoto(numero) {
+        if (numero > maxFotos) {
+            if (fotosColorActuales.length > 0) mostrarModalColor();
+            else alert('No hay fotos de ejemplo para este color todavía.');
+            return;
+        }
+
+        let extIndex = 0;
+
+        function probarExt() {
+            if (extIndex >= extensiones.length) {
+                // No existe esta foto, terminar
+                if (fotosColorActuales.length > 0) mostrarModalColor();
+                else alert('No hay fotos de ejemplo para este color todavía.');
+                return;
+            }
+
+            const src = `${baseUrl}${nombreColor} ${numero}.${extensiones[extIndex]}`;
+            const img = new Image();
+
+            img.onload = () => {
+                fotosColorActuales.push(src);
+                cargarFoto(numero + 1);
+            };
+
+            img.onerror = () => {
+                extIndex++;
+                // Si falló con todas las extensiones, esta foto no existe
+                if (extIndex >= extensiones.length) {
+                    if (fotosColorActuales.length > 0) mostrarModalColor();
+                    else alert('No hay fotos de ejemplo para este color todavía.');
+                } else {
+                    probarExt();
+                }
+            };
+
+            img.src = src;
+        }
+
+        probarExt();
+    }
+
+    cargarFoto(1);
+}
+
+function mostrarModalColor() {
+    document.getElementById('modal-color-img').src = fotosColorActuales[fotoColorIndex];
+    actualizarContadorColor();
+    document.getElementById('modal-color').style.display = 'flex';
+}
+
+function actualizarContadorColor() {
+    document.getElementById('modal-color-contador').textContent =
+        `${fotoColorIndex + 1} / ${fotosColorActuales.length}`;
+    document.getElementById('modal-color-img').src = fotosColorActuales[fotoColorIndex];
+}
+
+function cerrarModalColor() {
+    document.getElementById('modal-color').style.display = 'none';
 }
 
 // ========================= FIN MAPA DE COLORES =========================

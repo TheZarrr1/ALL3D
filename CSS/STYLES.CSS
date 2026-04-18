@@ -2741,3 +2741,48 @@ form textarea {
     outline: none;
     border: 1px solid #ff4b2b;
 }
+
+/* ==================== EJEMPLOS DE FOTOS DE CADA COLOR ======================= */
+
+.flecha-modal-color {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    border: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    line-height: 58px;
+    text-align: center;
+    transition: background 1.5s ease;
+    background-size: 400% 400%;
+}
+
+.flecha-modal-color:hover {
+    animation: cambio-color 2s ease infinite;
+}
+
+.link-ver-ejemplo {
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    background: linear-gradient(to right, rgb(165, 2, 165), rgb(15, 226, 226));
+    padding: 7px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+    background-size: 400% 400%;
+    transition: background 1.5s ease;
+}
+
+.link-ver-ejemplo:hover {
+    animation: cambio-color 2s ease infinite;
+}

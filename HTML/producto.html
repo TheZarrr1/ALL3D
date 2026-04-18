@@ -121,5 +121,25 @@
     </div>
     
     <script defer src="../JS/producto.js"></script>
+
+<!-- Modal fotos de ejemplo de color -->
+<div id="modal-color" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:2000; justify-content:center; align-items:center; flex-direction:column; gap:16px;" onclick="if(event.target===this) cerrarModalColor()">
+    <span onclick="cerrarModalColor()" style="position:absolute; top:15px; right:20px; color:white; font-size:40px; cursor:pointer; font-weight:bold; line-height:1; transition: color 0.2s;" onmouseover="this.style.color='#ccc'" onmouseout="this.style.color='white'">&times;</span>
+    
+    <p id="modal-color-contador" style="color:rgba(255,255,255,0.7); font-size:14px; margin:0; letter-spacing:1px;"></p>
+    
+    <img id="modal-color-img" src="" style="max-width:85%; max-height:65vh; border-radius:12px; object-fit:contain; box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+    
+    <div style="display:flex; gap:16px; align-items:center;">
+        <div style="display:flex; gap:16px; align-items:center; justify-content:center; width:100%;">
+<button onclick="fotoColorIndex = (fotoColorIndex - 1 + fotosColorActuales.length) % fotosColorActuales.length; actualizarContadorColor();"
+    class="flecha-modal-color"><span style="display:block; transform: translate(-2px, 0px);">&#10094;</span></button>
+
+<button onclick="fotoColorIndex = (fotoColorIndex + 1) % fotosColorActuales.length; actualizarContadorColor();"
+    class="flecha-modal-color"><span style="display:block; transform: translate(1px, 0px);">&#10095;</span></button>
+</div>
+    </div>
+</div>
+
 </body>
 </html>
