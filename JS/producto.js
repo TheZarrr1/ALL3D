@@ -267,11 +267,11 @@ const MAPA_COLORES = {
     'rojo':                                     { bg: '#e22f2f' },
     'rojo fluo':                                { bg: '#f81818' },
     'rojo translucido':                         { bg: 'rgba(255, 0, 0, 0.56)' },
-    'silk: azul-verde-naranja':                 { gradient: 'conic-gradient(#1565C0 0deg 120deg, #2E7D32 120deg 240deg, #E65100 240deg 360deg)', border: true },
-    'silk: azul-violeta-negro':                 { gradient: 'conic-gradient(#1565C0 0deg 120deg, #6A1B9A 120deg 240deg, #1A1A1A 240deg 360deg)', border: true },
-    'silk: negro-rojo (fucsia mas que rojo)':   { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #E8006A 180deg 360deg)', border: true },
-    'silk: negro-violeta':                      { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #6A1B9A 180deg 360deg)', border: true },
-    'silk: plata':                              { gradient: 'conic-gradient(#C0C0C0 0deg 360deg)', border: true },
+    'silk; azul-verde-naranja':                 { gradient: 'conic-gradient(#1565C0 0deg 120deg, #2E7D32 120deg 240deg, #E65100 240deg 360deg)', border: true },
+    'silk; azul-violeta-negro':                 { gradient: 'conic-gradient(#1565C0 0deg 120deg, #6A1B9A 120deg 240deg, #1A1A1A 240deg 360deg)', border: true },
+    'silk; negro-rojo (fucsia mas que rojo)':   { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #E8006A 180deg 360deg)', border: true },
+    'silk; negro-violeta':                      { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #6A1B9A 180deg 360deg)', border: true },
+    'silk; plata':                              { gradient: 'conic-gradient(#C0C0C0 0deg 360deg)', border: true },
     'verde fluo':                               { bg: '#39FF14' },
 };
 
