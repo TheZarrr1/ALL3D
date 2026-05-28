@@ -253,6 +253,7 @@ document.addEventListener('DOMContentLoaded', cargarMedia);
 // Si agregás un color nuevo a tu lista, agregalo acá también con su código hex
 const MAPA_COLORES = {
     'amarillo':                                 { bg: '#FFD600' },
+    'azul':                                     { bg: '#003adad8' },
     'azul fluo':                                { bg: '#1100ff' },
     'azul pal':                                 { bg: '#5B9BD5' },
     'blanco':                                   { bg: '#F5F5F5', border: true },
@@ -263,6 +264,7 @@ const MAPA_COLORES = {
     'gris':                                     { bg: '#9E9E9E' },
     'naraja':                                   { bg: '#FF6B1A' },
     'negro':                                    { bg: '#1A1A1A' },
+    'Oro Metalizado':                           { bg: '#c5b207' },
     'piel':                                     { bg: '#EAAA7A' },
     'rojo':                                     { bg: '#e22f2f' },
     'rojo fluo':                                { bg: '#f81818' },
@@ -272,7 +274,10 @@ const MAPA_COLORES = {
     'silk; negro-rojo (fucsia mas que rojo)':   { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #E8006A 180deg 360deg)', border: true },
     'silk; negro-violeta':                      { gradient: 'conic-gradient(#1A1A1A 0deg 180deg, #6A1B9A 180deg 360deg)', border: true },
     'silk; plata':                              { gradient: 'conic-gradient(#C0C0C0 0deg 360deg)', border: true },
+    'verde':                                    { bg: '#148600' },
     'verde fluo':                               { bg: '#39FF14' },
+    'verde ninja':                              { bg: '#58d112' },
+    'violeta':                                  { bg: '#c300ff' },
 };
 
 function actualizarPreviewColor(valorColor, previewEl) {
